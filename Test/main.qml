@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
+
 Window {
     width: 1330
     height: 780
@@ -36,15 +37,49 @@ Window {
     "Преобладает практичность - человек с выраженной чертой практичности\nпо своему складу реалист, хорошо адаптирован в обыденной жизни.\nОн трезво и реалистично смотрит на жизнь."
     ]
     property int questionNum: 0;                                                                      //номер вопроса
-    property int i :0;
 
     property int score1: 0;                                                                //Экстраверсия – интроверсия
-    property int score2: 0;                                                                  //Привязанность – обособленность
-    property int score3: 0;                                                                  //Самоконтроль – импульсивность
-    property int score4: 0;                                                                 //Эмоциональная устойчивость – эмоциональная неустойчивость
-    property int score5: 0;                                                                  //Экспрессивность – практичность
-    property int userSex: 0;                                                            //Пол человека, проходящего тест
+    property int score11: 0;                                                               //Активность - пассивность
+    property int score12: 0;                                                               //Доминирование-подчиненность
+    property int score13: 0;                                                               //Общительность - замкнутость
+    property int score14: 0;                                                               //Поиск впечатлений - избегание
+    property int score15: 0;                                                               //Привлечение внимания - избегание
 
+    property int score2: 0;                                                                 //Привязанность – обособленность
+    property int score21: 0;                                                                //Теплота - равнодушие
+    property int score22: 0;                                                                //Сотрудничество - соперничеств
+    property int score23: 0;                                                                //Доверчивость - подозрительност
+    property int score24: 0;                                                                //Понимание - непонимание
+    property int score25: 0;                                                                //Уважение других - самоуважени
+
+    property int score3: 0;                                                                //Самоконтроль – импульсивность
+    property int score31: 0;                                                               //Аккуратность - неаккуратность
+    property int score32: 0;                                                               //Настойчивость - слабоволие
+    property int score33: 0;                                                               //Ответственность - безответственность
+    property int score34: 0;                                                               //Самоконтроль - импульсивност
+    property int score35: 0;                                                               //Предусмотрительность - беспечность
+
+    property int score4: 0;                                                                //Эмоциональная устойчивость – эмоциональная неустойчивость
+    property int score41: 0;                                                               //Тревожность - беззаботность
+    property int score42: 0;                                                               //Напряженность - расслабленност
+    property int score43: 0;                                                               //Депрессивность - эмоциональная комфортность
+    property int score44: 0;                                                               //Самокритика - самодостаточность
+    property int score45: 0;                                                               //Эмоциональная лабильность - эмоциональная стабильность
+
+    property int score5: 0;                                                                //Экспрессивность – практичность
+    property int score51: 0;                                                               //Любопытство - консерватизм
+    property int score52: 0;                                                               //Мечтательность - реалистичност
+    property int score53: 0;                                                               //Артистичность - неартистичност
+    property int score54: 0;                                                               //Сензитивность - нечувствительност
+    property int score55: 0;                                                               //Пластичность - ригидность
+
+    property int userSex: 0;                                                            //Пол человека, проходящего тест
+    property int testEnd: 0;                                                            //Флаг окончания теста
+
+    Connections{                                                                        //Установка связи с сервером
+    ////////////PLACEHOLDER////////////////////////////
+    }
+Column{
     Text{                                                                                  //вывод номера вопроса на экран пользователя
         id: displayUserQuestion
         x:350
@@ -74,7 +109,7 @@ Window {
         x:350
         y:10
         visible: false
-        text: "Результат теста:"
+        text: "Результат теста: " +test1[1]
         font.pointSize: 40
     }
     Text{                                                                                 //вывод результата на экран пользователя
@@ -82,7 +117,47 @@ Window {
         visible: false
         x:300
         y:80
-        text: "1.Экстраверсия – интроверсия: " + score1 +" из 75"
+        text: "1. Экстраверсия – интроверсия: " + score1 +" из 75"
+        font.pointSize: 20
+    }
+    Text{                                                                                 //вывод результата на экран пользователя
+        id: displayResults11
+        visible: false
+        x:300
+        y:80
+        text: "1.1. Активность - пассивность: " + score1 +" из 75"
+        font.pointSize: 20
+    }
+    Text{                                                                                 //вывод результата на экран пользователя
+        id: displayResults12
+        visible: false
+        x:300
+        y:80
+        text: "1.2. Экстраверсия – интроверсия: " + score1 +" из 75"
+        font.pointSize: 20
+    }
+    Text{                                                                                 //вывод результата на экран пользователя
+        id: displayResults13
+        visible: false
+        x:300
+        y:80
+        text: "1.3. Экстраверсия – интроверсия: " + score1 +" из 75"
+        font.pointSize: 20
+    }
+    Text{                                                                                 //вывод результата на экран пользователя
+        id: displayResults14
+        visible: false
+        x:300
+        y:80
+        text: "1.4. Экстраверсия – интроверсия: " + score1 +" из 75"
+        font.pointSize: 20
+    }
+    Text{                                                                                 //вывод результата на экран пользователя
+        id: displayResults15
+        visible: false
+        x:300
+        y:80
+        text: "1.5. Экстраверсия – интроверсия: " + score1 +" из 75"
         font.pointSize: 20
     }
     Text{                                                                                 //вывод объяснения результата пользователя
@@ -98,9 +173,10 @@ Window {
         visible: false
         x:300
         y:180
-        text: "2.Привязанность – обособленность: " +score2 +" из 75"
+        text: "2. Привязанность – обособленность: " +score2 +" из 75"
         font.pointSize: 20
     }
+}
     Text{                                                                                 //вывод объяснения результата пользователя
         id: displayExplanation2
         visible: false
@@ -114,7 +190,7 @@ Window {
         visible: false
         x:300
         y:280
-        text: "3.Самоконтроль – импульсивность: " +score3 +" из 75"
+        text: "3. Самоконтроль – импульсивность: " +score3 +" из 75"
         font.pointSize: 20
     }
     Text{                                                                                 //вывод объяснения результата пользователя
@@ -130,7 +206,7 @@ Window {
         visible: false
         x:300
         y:380
-        text: "4.Эмоциональная устойчивость - неустойчивость: " +score4 +" из 75"
+        text: "4. Эмоциональная устойчивость - неустойчивость: " +score4 +" из 75"
         font.pointSize: 20
     }
     Text{                                                                                 //вывод объяснения результата пользователя
@@ -146,7 +222,7 @@ Window {
         visible: false
         x:300
         y:480
-        text: "5.Экспрессивность – практичность: " +score5 +" из 75"
+        text: "5. Экспрессивность – практичность: " +score5 +" из 75 "
         font.pointSize: 20
     }
     Text{                                                                                 //вывод объяснения результата пользователя
@@ -157,7 +233,6 @@ Window {
         text: ""
         font.pointSize: 15
     }
-
 
     Row{
         y:250
@@ -186,13 +261,13 @@ Window {
                     anchors.fill:parent
                     hoverEnabled: true
                     onClicked: {
-                        buttonMale.visible=false
-                        buttonFemale.visible=false
-                        buttonRow.visible=true
+                        buttonMale.visible=false;
+                        buttonFemale.visible=false;
+                        buttonRow.visible=true;
                         userSex=1;
-                        displayUserQuestion.visible=false
-                        displayQuestion.visible=true
-                        displayQuestionNum.visible=true
+                        displayUserQuestion.visible=false;
+                        displayQuestion.visible=true;
+                        displayQuestionNum.visible=true;
                     }
                 }
             }
@@ -220,13 +295,13 @@ Window {
                     anchors.fill:parent
                     hoverEnabled: true
                     onClicked: {
-                        buttonMale.visible=false
-                        buttonFemale.visible=false
-                        buttonRow.visible=true
+                        buttonMale.visible=false;
+                        buttonFemale.visible=false;
+                        buttonRow.visible=true;
                         userSex=2;
-                        displayUserQuestion.visible=false
-                        displayQuestion.visible=true
-                        displayQuestionNum.visible=true
+                        displayUserQuestion.visible=false;
+                        displayQuestion.visible=true;
+                        displayQuestionNum.visible=true;
                     }
                 }
             }
@@ -259,10 +334,24 @@ Window {
                     anchors.fill:parent
                     hoverEnabled: true
                     onClicked: {
-                        if(questionNum>0)
+                        if(questionNum > 0 && questionNum < questionsString.length)       //Вернуться на вопрос назад
                         {
-
                             questionNum--;
+                        }
+                        else if(userSex > 0 && questionNum == 0)                                             //Вернуться на экран выбора пола
+                        {
+                            userSex=0;
+                            buttonMale.visible=true;
+                            buttonFemale.visible=true;
+
+                            buttonRow.visible=false;
+                            displayUserQuestion.visible=true;
+                            displayQuestion.visible=false;
+                            displayQuestionNum.visible=false;
+                        }
+                        if(questionNum == 0 || testEnd)                //Выйти из теста
+                        {
+                            Qt.quit();          //PLACEHOLDER INSERT RETURN TO PREVIOUS PAGE
                         }
                     }
                 }
@@ -299,25 +388,120 @@ Window {
             hoverEnabled: true
             onClicked: {
                 console.log("Ответ нажат 1");
-                switch((questionNum+1) % 5)
+                if((questionNum+1)<=15)
                 {
-                case 0:
-                    score5+=5;
-                    break;
-                case 1:
-                    score1+=5;
-                    break;
-                case 2:
-                    score2+=5;
-                    break;
-                case 3:
-                    score3+=5;
-                    break;
-                case 4:
-                    score4+=5;
-                    break;
-                default:
-                    break;
+                    switch((questionNum+1) % 5)
+                    {
+                    case 0:
+                        score51+=5;
+                        break;
+                    case 1:
+                        score11+=5;
+                        break;
+                    case 2:
+                        score21+=5;
+                        break;
+                    case 3:
+                        score31+=5;
+                        break;
+                    case 4:
+                        score41+=5;
+                        break;
+                    default:
+                        break;
+                    }
+                }
+                if((questionNum+1) > 15 && (questionNum+1) <= 30)
+                {
+                    switch((questionNum+1) % 5)
+                    {
+                    case 0:
+                        score52+=5;
+                        break;
+                    case 1:
+                        score12+=5;
+                        break;
+                    case 2:
+                        score22+=5;
+                        break;
+                    case 3:
+                        score32+=5;
+                        break;
+                    case 4:
+                        score42+=5;
+                        break;
+                    default:
+                        break;
+                    }
+                }
+                if((questionNum+1) > 30 && (questionNum+1) <= 45)
+                {
+                    switch((questionNum+1) % 5)
+                    {
+                    case 0:
+                        score53+=5;
+                        break;
+                    case 1:
+                        score13+=5;
+                        break;
+                    case 2:
+                        score23+=5;
+                        break;
+                    case 3:
+                        score33+=5;
+                        break;
+                    case 4:
+                        score43+=5;
+                        break;
+                    default:
+                        break;
+                    }
+                }
+                if((questionNum+1) > 45 && (questionNum+1) <= 60)
+                {
+                    switch((questionNum+1) % 5)
+                    {
+                    case 0:
+                        score54+=5;
+                        break;
+                    case 1:
+                        score14+=5;
+                        break;
+                    case 2:
+                        score24+=5;
+                        break;
+                    case 3:
+                        score34+=5;
+                        break;
+                    case 4:
+                        score44+=5;
+                        break;
+                    default:
+                        break;
+                    }
+                }
+                if((questionNum+1) > 60 && (questionNum+1) <= 75)
+                {
+                    switch((questionNum+1) % 5)
+                    {
+                    case 0:
+                        score55+=5;
+                        break;
+                    case 1:
+                        score15+=5;
+                        break;
+                    case 2:
+                        score25+=5;
+                        break;
+                    case 3:
+                        score35+=5;
+                        break;
+                    case 4:
+                        score45+=5;
+                        break;
+                    default:
+                        break;
+                    }
                 }
                 if(questionNum<questionsString.length-1)
                 {
@@ -325,47 +509,55 @@ Window {
                 }
                 else
                 {
-                    displayResult.visible=true                          //Вывод результатов теста
-                    displayResults1.visible=true
-                    displayResults2.visible=true
-                    displayResults3.visible=true
-                    displayResults4.visible=true
-                    displayResults5.visible=true
+                                                                                            //Получение итоговых результатов
+                    score1+=score11 + score12 + score13 + score14 + score15
+                    score2+=score21 + score22 + score23 + score24 + score25
+                    score3+=score31 + score32 + score33 + score34 + score35
+                    score4+=score41 + score42 + score43 + score44 + score45
+                    score5+=score51 + score52 + score53 + score54 + score55
+
+                    displayResult.visible=true;                          //Вывод результатов теста
+                    displayResults1.visible=true;
+                    displayResults2.visible=true;
+                    displayResults3.visible=true;
+                    displayResults4.visible=true;
+                    displayResults5.visible=true;
 
                     if(score1<=(questionNum/2))                                //Вывод объяснения результатов теста
-                        displayExplanation1.text=resultExplanation[0]
+                        displayExplanation1.text=resultExplanation[0];
                     else
-                        displayExplanation1.text=resultExplanation[1]
+                        displayExplanation1.text=resultExplanation[1];
 
                     if(score2<=(questionNum/2))
-                        displayExplanation2.text=resultExplanation[2]
+                        displayExplanation2.text=resultExplanation[2];
                     else
-                        displayExplanation2.text=resultExplanation[3]
+                        displayExplanation2.text=resultExplanation[3];
 
                     if(score3<=(questionNum/2))
-                        displayExplanation3.text=resultExplanation[4]
+                        displayExplanation3.text=resultExplanation[4];
                     else
-                        displayExplanation3.text=resultExplanation[5]
+                        displayExplanation3.text=resultExplanation[5];
 
                     if(score4<=(questionNum/2))
-                        displayExplanation4.text=resultExplanation[6]
+                        displayExplanation4.text=resultExplanation[6];
                     else
-                        displayExplanation4.text=resultExplanation[7]
+                        displayExplanation4.text=resultExplanation[7];
 
                     if(score5<=(questionNum/2))
-                        displayExplanation5.text=resultExplanation[8]
+                        displayExplanation5.text=resultExplanation[8];
                     else
-                        displayExplanation5.text=resultExplanation[9]
+                        displayExplanation5.text=resultExplanation[9];
 
-                    displayExplanation1.visible=true
-                    displayExplanation2.visible=true
-                    displayExplanation3.visible=true
-                    displayExplanation4.visible=true
-                    displayExplanation5.visible=true
+                    displayExplanation1.visible=true;
+                    displayExplanation2.visible=true;
+                    displayExplanation3.visible=true;
+                    displayExplanation4.visible=true;
+                    displayExplanation5.visible=true;
 
                     displayQuestion.visible=false;
-                    displayQuestionNum.visible=false
-                    buttonQuestionBack.text="Выйти из теста"
+                    displayQuestionNum.visible=false;
+                    buttonQuestionBack.text="Выйти из теста";
+                    testEnd=1;
                     buttonDisagreeCompletely.visible=false;
                     buttonDisagreePartially.visible=false;
                     buttonUncertain.visible=false;
@@ -424,47 +616,54 @@ Window {
                    }
                 else
                 {
-                    displayResult.visible=true                          //Вывод результатов теста
-                    displayResults1.visible=true
-                    displayResults2.visible=true
-                    displayResults3.visible=true
-                    displayResults4.visible=true
-                    displayResults5.visible=true
+                                                                             //Получение итоговых результатов
+                  score1+=score11 + score12 + score13 + score14 + score15
+                   score2+=score21 + score22 + score23 + score24 + score25
+                   score3+=score31 + score32 + score33 + score34 + score35
+                    score4+=score41 + score42 + score43 + score44 + score45
+                    score5+=score51 + score52 + score53 + score54 + score55
+                    displayResult.visible=true;                          //Вывод результатов теста
+                    displayResults1.visible=true;
+                    displayResults2.visible=true;
+                    displayResults3.visible=true;
+                    displayResults4.visible=true;
+                    displayResults5.visible=true;
 
                     if(score1<=(questionNum/2))                                //Вывод объяснения результатов теста
-                        displayExplanation1.text=resultExplanation[0]
+                        displayExplanation1.text=resultExplanation[0];
                     else
-                        displayExplanation1.text=resultExplanation[1]
+                        displayExplanation1.text=resultExplanation[1];
 
                     if(score2<=(questionNum/2))
-                        displayExplanation2.text=resultExplanation[2]
+                        displayExplanation2.text=resultExplanation[2];
                     else
-                        displayExplanation2.text=resultExplanation[3]
+                        displayExplanation2.text=resultExplanation[3];
 
                     if(score3<=(questionNum/2))
-                        displayExplanation3.text=resultExplanation[4]
+                        displayExplanation3.text=resultExplanation[4];
                     else
-                        displayExplanation3.text=resultExplanation[5]
+                        displayExplanation3.text=resultExplanation[5];
 
                     if(score4<=(questionNum/2))
-                        displayExplanation4.text=resultExplanation[6]
+                        displayExplanation4.text=resultExplanation[6];
                     else
-                        displayExplanation4.text=resultExplanation[7]
+                        displayExplanation4.text=resultExplanation[7];
 
                     if(score5<=(questionNum/2))
-                        displayExplanation5.text=resultExplanation[8]
+                        displayExplanation5.text=resultExplanation[8];
                     else
-                        displayExplanation5.text=resultExplanation[9]
+                        displayExplanation5.text=resultExplanation[9];
 
-                    displayExplanation1.visible=true
-                    displayExplanation2.visible=true
-                    displayExplanation3.visible=true
-                    displayExplanation4.visible=true
-                    displayExplanation5.visible=true
+                    displayExplanation1.visible=true;
+                    displayExplanation2.visible=true;
+                    displayExplanation3.visible=true;
+                    displayExplanation4.visible=true;
+                    displayExplanation5.visible=true;
 
                     displayQuestion.visible=false;
-                    displayQuestionNum.visible=false
-                    buttonQuestionBack.text="Выйти из теста"
+                    displayQuestionNum.visible=false;
+                    buttonQuestionBack.text="Выйти из теста";
+                    testEnd=1;
                     buttonDisagreeCompletely.visible=false;
                     buttonDisagreePartially.visible=false;
                     buttonUncertain.visible=false;
@@ -524,47 +723,54 @@ Window {
                 }
                 else
                 {
-                    displayResult.visible=true                          //Вывод результатов теста
-                    displayResults1.visible=true
-                    displayResults2.visible=true
-                    displayResults3.visible=true
-                    displayResults4.visible=true
-                    displayResults5.visible=true
+                                        //Получение итоговых результатов
+                    score1+=score11 + score12 + score13 + score14 + score15
+                    score2+=score21 + score22 + score23 + score24 + score25
+                    score3+=score31 + score32 + score33 + score34 + score35
+                    score4+=score41 + score42 + score43 + score44 + score45
+                    score5+=score51 + score52 + score53 + score54 + score55
+                    displayResult.visible=true;                          //Вывод результатов теста
+                    displayResults1.visible=true;
+                    displayResults2.visible=true;
+                    displayResults3.visible=true;
+                    displayResults4.visible=true;
+                    displayResults5.visible=true;
 
                     if(score1<=(questionNum/2))                                //Вывод объяснения результатов теста
-                        displayExplanation1.text=resultExplanation[0]
+                        displayExplanation1.text=resultExplanation[0];
                     else
-                        displayExplanation1.text=resultExplanation[1]
+                        displayExplanation1.text=resultExplanation[1];
 
                     if(score2<=(questionNum/2))
-                        displayExplanation2.text=resultExplanation[2]
+                        displayExplanation2.text=resultExplanation[2];
                     else
-                        displayExplanation2.text=resultExplanation[3]
+                        displayExplanation2.text=resultExplanation[3];
 
                     if(score3<=(questionNum/2))
-                        displayExplanation3.text=resultExplanation[4]
+                        displayExplanation3.text=resultExplanation[4];
                     else
-                        displayExplanation3.text=resultExplanation[5]
+                        displayExplanation3.text=resultExplanation[5];
 
                     if(score4<=(questionNum/2))
-                        displayExplanation4.text=resultExplanation[6]
+                        displayExplanation4.text=resultExplanation[6];
                     else
-                        displayExplanation4.text=resultExplanation[7]
+                        displayExplanation4.text=resultExplanation[7];
 
                     if(score5<=(questionNum/2))
-                        displayExplanation5.text=resultExplanation[8]
+                        displayExplanation5.text=resultExplanation[8];
                     else
-                        displayExplanation5.text=resultExplanation[9]
+                        displayExplanation5.text=resultExplanation[9];
 
-                    displayExplanation1.visible=true
-                    displayExplanation2.visible=true
-                    displayExplanation3.visible=true
-                    displayExplanation4.visible=true
+                    displayExplanation1.visible=true;
+                    displayExplanation2.visible=true;
+                    displayExplanation3.visible=true;
+                    displayExplanation4.visible=true;
                     displayExplanation5.visible=true;
 
                     displayQuestion.visible=false;
-                    displayQuestionNum.visible=false
-                    buttonQuestionBack.text="Выйти из теста"
+                    displayQuestionNum.visible=false;
+                    buttonQuestionBack.text="Выйти из теста";
+                    testEnd=1;
                     buttonDisagreeCompletely.visible=false;
                     buttonDisagreePartially.visible=false;
                     buttonUncertain.visible=false;
@@ -624,47 +830,54 @@ Window {
                 }
                 else
                 {
-                    displayResult.visible=true                          //Вывод результатов теста
-                    displayResults1.visible=true
-                    displayResults2.visible=true
-                    displayResults3.visible=true
-                    displayResults4.visible=true
-                    displayResults5.visible=true
+                                        //Получение итоговых результатов
+                    score1+=score11 + score12 + score13 + score14 + score15
+                    score2+=score21 + score22 + score23 + score24 + score25
+                    score3+=score31 + score32 + score33 + score34 + score35
+                    score4+=score41 + score42 + score43 + score44 + score45
+                    score5+=score51 + score52 + score53 + score54 + score55
+                    displayResult.visible=true;                          //Вывод результатов теста
+                    displayResults1.visible=true;
+                    displayResults2.visible=true;
+                    displayResults3.visible=true;
+                    displayResults4.visible=true;
+                    displayResults5.visible=true;
 
                     if(score1<=(questionNum/2))                                //Вывод объяснения результатов теста
-                        displayExplanation1.text=resultExplanation[0]
+                        displayExplanation1.text=resultExplanation[0];
                     else
-                        displayExplanation1.text=resultExplanation[1]
+                        displayExplanation1.text=resultExplanation[1];
 
                     if(score2<=(questionNum/2))
-                        displayExplanation2.text=resultExplanation[2]
+                        displayExplanation2.text=resultExplanation[2];
                     else
-                        displayExplanation2.text=resultExplanation[3]
+                        displayExplanation2.text=resultExplanation[3];
 
                     if(score3<=(questionNum/2))
-                        displayExplanation3.text=resultExplanation[4]
+                        displayExplanation3.text=resultExplanation[4];
                     else
-                        displayExplanation3.text=resultExplanation[5]
+                        displayExplanation3.text=resultExplanation[5];
 
                     if(score4<=(questionNum/2))
-                        displayExplanation4.text=resultExplanation[6]
+                        displayExplanation4.text=resultExplanation[6];
                     else
-                        displayExplanation4.text=resultExplanation[7]
+                        displayExplanation4.text=resultExplanation[7];
 
                     if(score5<=(questionNum/2))
-                        displayExplanation5.text=resultExplanation[8]
+                        displayExplanation5.text=resultExplanation[8];
                     else
-                        displayExplanation5.text=resultExplanation[9]
+                        displayExplanation5.text=resultExplanation[9];
 
-                    displayExplanation1.visible=true
-                    displayExplanation2.visible=true
-                    displayExplanation3.visible=true
-                    displayExplanation4.visible=true
-                    displayExplanation5.visible=true
+                    displayExplanation1.visible=true;
+                    displayExplanation2.visible=true;
+                    displayExplanation3.visible=true;
+                    displayExplanation4.visible=true;
+                    displayExplanation5.visible=true;
 
                     displayQuestion.visible=false;
-                    displayQuestionNum.visible=false
-                    buttonQuestionBack.text="Выйти из теста"
+                    displayQuestionNum.visible=false;
+                    buttonQuestionBack.text="Выйти из теста";
+                    testEnd=1;
                     buttonDisagreeCompletely.visible=false;
                     buttonDisagreePartially.visible=false;
                     buttonUncertain.visible=false;
@@ -723,47 +936,54 @@ Window {
                 }
                 else
                 {
-                    displayResult.visible=true                          //Вывод результатов теста
-                    displayResults1.visible=true
-                    displayResults2.visible=true
-                    displayResults3.visible=true
-                    displayResults4.visible=true
-                    displayResults5.visible=true
+                                        //Получение итоговых результатов
+                    score1+=score11 + score12 + score13 + score14 + score15
+                    score2+=score21 + score22 + score23 + score24 + score25
+                    score3+=score31 + score32 + score33 + score34 + score35
+                    score4+=score41 + score42 + score43 + score44 + score45
+                    score5+=score51 + score52 + score53 + score54 + score55
+                    displayResult.visible=true;                          //Вывод результатов теста
+                    displayResults1.visible=true;
+                    displayResults2.visible=true;
+                    displayResults3.visible=true;
+                    displayResults4.visible=true;
+                    displayResults5.visible=true;
 
                     if(score1<=(questionNum/2))                                //Вывод объяснения результатов теста
-                        displayExplanation1.text=resultExplanation[0]
+                        displayExplanation1.text=resultExplanation[0];
                     else
-                        displayExplanation1.text=resultExplanation[1]
+                        displayExplanation1.text=resultExplanation[1];
 
                     if(score2<=(questionNum/2))
-                        displayExplanation2.text=resultExplanation[2]
+                        displayExplanation2.text=resultExplanation[2];
                     else
-                        displayExplanation2.text=resultExplanation[3]
+                        displayExplanation2.text=resultExplanation[3];
 
                     if(score3<=(questionNum/2))
-                        displayExplanation3.text=resultExplanation[4]
+                        displayExplanation3.text=resultExplanation[4];
                     else
-                        displayExplanation3.text=resultExplanation[5]
+                        displayExplanation3.text=resultExplanation[5];
 
                     if(score4<=(questionNum/2))
-                        displayExplanation4.text=resultExplanation[6]
+                        displayExplanation4.text=resultExplanation[6];
                     else
-                        displayExplanation4.text=resultExplanation[7]
+                        displayExplanation4.text=resultExplanation[7];
 
                     if(score5<=(questionNum/2))
-                        displayExplanation5.text=resultExplanation[8]
+                        displayExplanation5.text=resultExplanation[8];
                     else
-                        displayExplanation5.text=resultExplanation[9]
+                        displayExplanation5.text=resultExplanation[9];
 
-                    displayExplanation1.visible=true
-                    displayExplanation2.visible=true
-                    displayExplanation3.visible=true
-                    displayExplanation4.visible=true
-                    displayExplanation5.visible=true
+                    displayExplanation1.visible=true;
+                    displayExplanation2.visible=true;
+                    displayExplanation3.visible=true;
+                    displayExplanation4.visible=true;
+                    displayExplanation5.visible=true;
 
                     displayQuestion.visible=false;
-                    displayQuestionNum.visible=false
+                    displayQuestionNum.visible=false;
                     buttonQuestionBack.text="Выйти из теста"
+                    testEnd=1;
                     buttonDisagreeCompletely.visible=false;
                     buttonDisagreePartially.visible=false;
                     buttonUncertain.visible=false;
