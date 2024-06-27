@@ -262,13 +262,63 @@ Window {
     Connections{                                                                        //Установка связи с сервером
     ////////////PLACEHOLDER////////////////////////////
     }
+
+
 ScrollView{
 anchors.fill:parent
-
-
     Column{
         id:textColumn
         spacing: 20
+
+        Rectangle{                                                                            //кнопка вернуться назад на вопрос или выйти из теста
+            visible: true
+            id:questionBack
+            Rectangle{
+                color: if(buttonQuestionBackMouseArea.containsPress){
+                           return "Black";
+                    } else if(buttonQuestionBackMouseArea.containsMouse){
+                    return "Grey";
+                         }
+                           else{
+                               return "White";
+                           }
+
+                width: 150
+                height: 75
+                Text{
+                    id:buttonQuestionBack
+                    anchors.centerIn: parent
+                    text:"Вернуться назад"
+                }
+                MouseArea{
+                    id:buttonQuestionBackMouseArea
+                    anchors.fill:parent
+                    hoverEnabled: true
+                    onClicked: {
+                        if(questionNum > 0 && testEnd==0)       //Вернуться на вопрос назад
+                        {
+                            questionNum--;
+                        }
+                        else if(userSex > 0 && questionNum == 0)                                             //Вернуться на экран выбора пола
+                        {
+                            userSex=0;
+                            buttonMale.visible=true;
+                            buttonFemale.visible=true;
+
+                            buttonRow.visible=false;
+                            displayUserQuestion.visible=true;
+                            displayQuestion.visible=false;
+                            displayQuestionNum.visible=false;
+                        }
+                        else if(questionNum == 0 || testEnd)                //Выйти из теста
+                        {
+                            Qt.quit();          //PLACEHOLDER INSERT RETURN TO PREVIOUS PAGE
+                        }
+                    }
+                }
+            }
+        }
+
         Text{                                                                                  //вывод номера вопроса на экран пользователя
             id: displayUserQuestion
             x:350
@@ -301,53 +351,215 @@ anchors.fill:parent
             text: "Результат теста: "
             font.pointSize: 40
         }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults1
+
+        Row{                                                                            //Вывод  информации о результатах теста
+            id: graphScore1
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             visible: false
+            spacing: 10
+            y: 100
             x:300
-            y:80
-            text: "1. Экстраверсия – интроверсия: " + score1 +"/75"
-            font.pointSize: 20
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults1
+                 y: -10
+                visible: false
+                text: "1. Экстраверсия – интроверсия: " + score1 +"/75"
+                font.pointSize: 20
+            }
+            Row{                                                                        //Вывод  графической информации о результатах теста
+                Repeater{
+                    model: score1
+                    Rectangle{
+                        width:(300/questionsString.length)
+                        height:20
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (questionsString.length - score1)
+                    Rectangle{
+                        width:20
+                        height:20
+                        color:"black"
+                    }
+                }
+            }
         }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults11
+
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore11
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             visible: false
+            spacing: 10
+            y: 80
             x:300
-            y:80
-            text: "1.1. Активность - пассивность: " + score11 +"/15"
-            font.pointSize: 15
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults11
+                 y: -10
+                visible: false
+                text: "1.1. Активность - пассивность: " + score11 +"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score11
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score11)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
         }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults12
+
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore12
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             visible: false
+            spacing: 10
+            y: 80
             x:300
-            y:80
-            text: "1.2. Экстраверсия – интроверсия: " + score12 +"/15"
-            font.pointSize: 15
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults12
+                 y: -10
+                visible: false
+                text: "1.2. Экстраверсия – интроверсия: " + score12 +"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score12
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score12)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
         }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults13
+
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore13
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             visible: false
+            spacing: 10
+            y: 80
             x:300
-            y:80
-            text: "1.3. Экстраверсия – интроверсия: " + score13+"/15"
-            font.pointSize: 15
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults13
+                 y: -10
+                visible: false
+                text: "1.3. Экстраверсия – интроверсия: " + score13+"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score13
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score13)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
         }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults14
+
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore14
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             visible: false
+            spacing: 10
+            y: 80
             x:300
-            y:80
-            text: "1.4. Экстраверсия – интроверсия: " + score14 +"/15"
-            font.pointSize: 15
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults14
+                 y: -10
+                visible: false
+                text: "1.4. Экстраверсия – интроверсия: " + score14 +"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score14
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score14)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
         }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults15
+
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore15
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             visible: false
+            spacing: 10
+            y: 80
             x:300
-            y:80
-            text: "1.5. Экстраверсия – интроверсия: " + score15 +"/15"
-            font.pointSize: 15
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults15
+                 y: -10
+                visible: false
+                text: "1.5. Экстраверсия – интроверсия: " + score15 +"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score15
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score15)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
         }
         Text{                                                                                 //вывод объяснения результата пользователя
             id: displayExplanation1
@@ -357,55 +569,216 @@ anchors.fill:parent
             text: ""
             font.pointSize: 15
         }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults2
+
+        Row{                                                                            //Вывод  информации о результатах теста
+            id: graphScore2
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             visible: false
+            spacing: 10
+            y: 180
             x:300
-            y:180
-            text: "2. Привязанность – обособленность: " +score2 +"/75"
-            font.pointSize: 20
-        }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults21
-            visible: false
-            x:300
-            y:80
-            text: "2.1. Теплота - равнодушие: " + score21 +"/15"
-            font.pointSize: 15
-        }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults22
-            visible: false
-            x:300
-            y:80
-            text: "2.2. Сотрудничество - соперничество: " + score22 +"/15"
-            font.pointSize: 15
-        }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults23
-            visible: false
-            x:300
-            y:80
-            text: "2.3. Доверчивость - подозрительность: " + score23+"/15"
-            font.pointSize: 15
-        }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults24
-            visible: false
-            x:300
-            y:80
-            text: "2.4. Понимание - непонимание: " + score24 +"/15"
-            font.pointSize: 15
-        }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults25
-            visible: false
-            x:300
-            y:80
-            text: "2.5. Уважение других - самоуважение: " + score25 +"/15"
-            font.pointSize: 15
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults2
+                visible: false
+                y:-10
+                text: "2. Привязанность – обособленность: " +score2 +"/75"
+                font.pointSize: 20
+            }
+            Row{                                                                        //Вывод  графической информации о результатах теста
+                Repeater{
+                    model: score2
+                    Rectangle{
+                        width:(300/questionsString.length)
+                        height:20
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (questionsString.length - score2)
+                    Rectangle{
+                        width:20
+                        height:20
+                        color:"black"
+                    }
+                }
+            }
         }
 
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore21
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            visible: false
+            spacing: 10
+            y: 80
+            x:300
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults21
+                 y: -10
+                visible: false
+                text: "2.1. Теплота - равнодушие: " + score21 +"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score21
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score21)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
+        }
+
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore22
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            visible: false
+            spacing: 10
+            y: 80
+            x:300
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults22
+                 y: -10
+                visible: false
+                text: "2.2. Сотрудничество - соперничество: " + score22 +"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score22
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score22)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
+        }
+
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore23
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            visible: false
+            spacing: 10
+            y: 80
+            x:300
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults23
+                 y: -10
+                visible: false
+                text: "2.3. Доверчивость - подозрительность: " + score23+"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score23
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score23)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
+        }
+
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore24
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            visible: false
+            spacing: 10
+            y: 80
+            x:300
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults24
+                 y: -10
+                visible: false
+                text: "2.4. Понимание - непонимание: " + score24 +"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score24
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score24)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
+        }
+
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore25
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            visible: false
+            spacing: 10
+            y: 80
+            x:300
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults25
+                 y: -10
+                visible: false
+                text: "2.5. Уважение других - самоуважение: " + score25 +"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score25
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score25)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
+        }
         Text{                                                                                 //вывод объяснения результата пользователя
             id: displayExplanation2
             visible: false
@@ -414,53 +787,215 @@ anchors.fill:parent
             text: ""
             font.pointSize: 15
         }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults3
+
+        Row{                                                                            //Вывод  информации о результатах теста
+            id: graphScore3
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             visible: false
-            x:300
+            spacing: 10
             y:280
-            text: "3. Самоконтроль – импульсивность: " +score3 +"/75"
-            font.pointSize: 20
-        }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults31
-            visible: false
             x:300
-            y:80
-            text: "3.1. Аккуратность - неаккуратность: " + score31 +"/15"
-            font.pointSize: 15
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults3
+                visible: false
+                y:-10
+                text: "3. Самоконтроль – импульсивность: " +score3 +"/75"
+                font.pointSize: 20
+            }
+            Row{                                                                        //Вывод  графической информации о результатах теста
+                Repeater{
+                    model: score3
+                    Rectangle{
+                        width:(300/questionsString.length)
+                        height:20
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (questionsString.length - score3)
+                    Rectangle{
+                        width:20
+                        height:20
+                        color:"black"
+                    }
+                }
+            }
         }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults32
+
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore31
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             visible: false
+            spacing: 10
+            y: 80
             x:300
-            y:80
-            text: "3.2. Настойчивость - слабоволие: " + score32 +"/15"
-            font.pointSize: 15
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults31
+                 y: -10
+                visible: false
+                text: "3.1. Аккуратность - неаккуратность: " + score31 +"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score31
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score31)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
         }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults33
+
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore32
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             visible: false
+            spacing: 10
+            y: 80
             x:300
-            y:80
-            text: "3.3. Ответственность - безответственность: " + score33+"/15"
-            font.pointSize: 15
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults32
+                 y: -10
+                visible: false
+                text: "3.2. Настойчивость - слабоволие: " + score32 +"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score32
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score32)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
         }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults34
+
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore33
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             visible: false
+            spacing: 10
+            y: 80
             x:300
-            y:80
-            text: "3.4. Самоконтроль - импульсивность: " + score34 +"/15"
-            font.pointSize: 15
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults33
+                 y: -10
+                visible: false
+                text: "3.3. Ответственность - безответственность: " + score33+"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score33
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score33)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
         }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults35
+
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore34
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             visible: false
+            spacing: 10
+            y: 80
             x:300
-            y:80
-            text: "3.5. Предусмотрительность - беспечность: " + score35 +"/15"
-            font.pointSize: 15
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults34
+                 y: -10
+                visible: false
+                text: "3.4. Самоконтроль - импульсивность: " + score34 +"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score34
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score34)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
+        }
+
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore35
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            visible: false
+            spacing: 10
+            y: 80
+            x:300
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults35
+                 y: -10
+                visible: false
+                text: "3.5. Предусмотрительность - беспечность: " + score35 +"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score35
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score35)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
         }
         Text{                                                                                 //вывод объяснения результата пользователя
             id: displayExplanation3
@@ -470,53 +1005,215 @@ anchors.fill:parent
             text: ""
             font.pointSize: 15
         }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults4
+
+        Row{                                                                            //Вывод  информации о результатах теста
+            id: graphScore4
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             visible: false
-            x:300
+            spacing: 10
             y:380
-            text: "4. Эмоциональная устойчивость - неустойчивость: " +score4 +"/75"
-            font.pointSize: 20
-        }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults41
-            visible: false
             x:300
-            y:80
-            text: "4.1. Тревожность - беззаботность: " + score41 +"/15"
-            font.pointSize: 15
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults4
+                visible: false
+                y:-10
+                text: "4. Эмоциональная устойчивость - неустойчивость: " +score4 +"/75"
+                font.pointSize: 20
+            }
+            Row{                                                                        //Вывод  графической информации о результатах теста
+                Repeater{
+                    model: score4
+                    Rectangle{
+                        width:(300/questionsString.length)
+                        height:20
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (questionsString.length - score4)
+                    Rectangle{
+                        width:20
+                        height:20
+                        color:"black"
+                    }
+                }
+            }
         }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults42
+
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore41
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             visible: false
+            spacing: 10
+            y: 80
             x:300
-            y:80
-            text: "4.2. Напряженность - расслабленность: " + score42 +"/15"
-            font.pointSize: 15
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults41
+                 y: -10
+                visible: false
+                text: "4.1. Тревожность - беззаботность: " + score41 +"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score41
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score41)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
         }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults43
+
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore42
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             visible: false
+            spacing: 10
+            y: 80
             x:300
-            y:80
-            text: "4.3. Депрессивность - эмоциональная комфортность: " + score43+"/15"
-            font.pointSize: 15
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults42
+                 y: -10
+                visible: false
+                text: "4.2. Напряженность - расслабленность: " + score42 +"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score42
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score42)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
         }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults44
+
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore43
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             visible: false
+            spacing: 10
+            y: 80
             x:300
-            y:80
-            text: "4.4. Самокритика - самодостаточность: " + score44 +"/15"
-            font.pointSize: 15
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults43
+                 y: -10
+                visible: false
+                text: "4.3. Депрессивность - эмоциональная комфортность: " + score43+"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score43
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score43)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
         }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults45
+
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore44
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             visible: false
+            spacing: 10
+            y: 80
             x:300
-            y:80
-            text: "4.5. Эмоциональная лабильность - эмоциональная стабильность: " + score45 +"/15"
-            font.pointSize: 15
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults44
+                 y: -10
+                visible: false
+                text: "4.4. Самокритика - самодостаточность: " + score44 +"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score44
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score44)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
+        }
+
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore45
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            visible: false
+            spacing: 10
+            y: 80
+            x:300
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults45
+                 y: -10
+                visible: false
+                text: "4.5. Эмоциональная лабильность - эмоциональная стабильность: " + score45 +"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score45
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score45)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
         }
         Text{                                                                                 //вывод объяснения результата пользователя
             id: displayExplanation4
@@ -526,53 +1223,215 @@ anchors.fill:parent
             text: ""
             font.pointSize: 15
         }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults5
+
+        Row{                                                                            //Вывод  информации о результатах теста
+            id: graphScore5
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             visible: false
-            x:300
+            spacing: 10
             y:480
-            text: "5. Экспрессивность – практичность: " +score5 +"/75 "
-            font.pointSize: 20
-        }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults51
-            visible: false
             x:300
-            y:80
-            text: "5.1. Любопытство - консерватизм: " + score51 +"/15"
-            font.pointSize: 15
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults5
+                visible: false
+                y:-10
+                text: "5. Экспрессивность – практичность: " +score5 +"/75 "
+                font.pointSize: 20
+            }
+            Row{                                                                        //Вывод  графической информации о результатах теста
+                Repeater{
+                    model: score5
+                    Rectangle{
+                        width:(300/questionsString.length)
+                        height:20
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (questionsString.length - score5)
+                    Rectangle{
+                        width:20
+                        height:20
+                        color:"black"
+                    }
+                }
+            }
         }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults52
+
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore51
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             visible: false
+            spacing: 10
+            y: 80
             x:300
-            y:80
-            text: "5.2. Мечтательность - реалистичность: " + score52 +"/15"
-            font.pointSize: 15
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults51
+                 y: -10
+                visible: false
+                text: "5.1. Любопытство - консерватизм: " + score51 +"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score51
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score51)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
         }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults53
+
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore52
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             visible: false
+            spacing: 10
+            y: 80
             x:300
-            y:80
-            text: "5.3. Артистичность - неартистичность: " + score53+"/15"
-            font.pointSize: 15
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults52
+                 y: -10
+                visible: false
+                text: "5.2. Мечтательность - реалистичность: " + score52 +"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score52
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score52)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
         }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults54
+
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore53
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             visible: false
+            spacing: 10
+            y: 80
             x:300
-            y:80
-            text: "5.4. Сензитивность - нечувствительность: " + score54 +"/15"
-            font.pointSize: 15
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults53
+                 y: -10
+                visible: false
+                text: "5.3. Артистичность - неартистичность: " + score53+"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score53
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score53)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
         }
-        Text{                                                                                 //вывод результата на экран пользователя
-            id: displayResults55
+
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore54
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             visible: false
+            spacing: 10
+            y: 80
             x:300
-            y:80
-            text: "5.5. Пластичность - ригидность: " + score55 +"/15"
-            font.pointSize: 15
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults54
+                 y: -10
+                visible: false
+                text: "5.4. Сензитивность - нечувствительность: " + score54 +"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score54
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score54)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
+        }
+
+        Row{                                                                            //Вывод  информации о доп. параметрах результата теста
+            id: graphScore55
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            visible: false
+            spacing: 10
+            y: 80
+            x:300
+            Text{                                                                                 //вывод результата на экран пользователя
+                id: displayResults55
+                 y: -10
+                visible: false
+                text: "5.5. Пластичность - ригидность: " + score55 +"/15"
+                font.pointSize: 15
+            }
+            Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
+                Repeater{
+                    model: score55
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"green"
+                    }
+                }
+                Repeater{
+                    model: (15 - score55)
+                    Rectangle{
+                        width:15
+                        height:15
+                        color:"black"
+                    }
+                }
+            }
         }
         Text{                                                                                 //вывод объяснения результата пользователя
             id: displayExplanation5
@@ -744,54 +1603,6 @@ anchors.fill:parent
     }
 
 
-        Rectangle{                                                                            //кнопка вернуться назад на вопрос или выйти из теста
-            visible: true
-            id:questionBack
-            Rectangle{
-                color: if(buttonQuestionBackMouseArea.containsPress){
-                           return "Black";
-                    } else if(buttonQuestionBackMouseArea.containsMouse){
-                    return "Grey";
-                         }
-                           else{
-                               return "White";
-                           }
-
-                width: 150
-                height: 75
-                Text{
-                    id:buttonQuestionBack
-                    anchors.centerIn: parent
-                    text:"Вернуться назад"
-                }
-                MouseArea{
-                    id:buttonQuestionBackMouseArea
-                    anchors.fill:parent
-                    hoverEnabled: true
-                    onClicked: {
-                        if(questionNum > 0 && questionNum < questionsString.length)       //Вернуться на вопрос назад
-                        {
-                            questionNum--;
-                        }
-                        else if(userSex > 0 && questionNum == 0)                                             //Вернуться на экран выбора пола
-                        {
-                            userSex=0;
-                            buttonMale.visible=true;
-                            buttonFemale.visible=true;
-
-                            buttonRow.visible=false;
-                            displayUserQuestion.visible=true;
-                            displayQuestion.visible=false;
-                            displayQuestionNum.visible=false;
-                        }
-                        if(questionNum == 0 || testEnd)                //Выйти из теста
-                        {
-                            Qt.quit();          //PLACEHOLDER INSERT RETURN TO PREVIOUS PAGE
-                        }
-                    }
-                }
-            }
-        }
 
 
     Row{                                                                            //строка выбора ответов на вопрос
@@ -986,6 +1797,42 @@ anchors.fill:parent
                     displayResults53.visible=true;
                     displayResults54.visible=true;
                     displayResults55.visible=true;
+
+                    graphScore1.visible=true;
+                    graphScore11.visible=true;
+                    graphScore12.visible=true;
+                    graphScore13.visible=true;
+                    graphScore14.visible=true;
+                    graphScore15.visible=true;
+
+                    graphScore2.visible=true;
+                    graphScore21.visible=true;
+                    graphScore22.visible=true;
+                    graphScore23.visible=true;
+                    graphScore24.visible=true;
+                    graphScore25.visible=true;
+
+                    graphScore3.visible=true;
+                    graphScore31.visible=true;
+                    graphScore32.visible=true;
+                    graphScore33.visible=true;
+                    graphScore34.visible=true;
+                    graphScore35.visible=true;
+
+                    graphScore4.visible=true;
+                    graphScore41.visible=true;
+                    graphScore42.visible=true;
+                    graphScore43.visible=true;
+                    graphScore44.visible=true;
+                    graphScore45.visible=true;
+
+                    graphScore5.visible=true;
+                    graphScore51.visible=true;
+                    graphScore52.visible=true;
+                    graphScore53.visible=true;
+                    graphScore54.visible=true;
+                    graphScore55.visible=true;
+
 
                     displayExplanation1Row.visible=true
                     displayExplanation2Row.visible=true
@@ -1192,6 +2039,41 @@ anchors.fill:parent
                     displayResults53.visible=true;
                     displayResults54.visible=true;
                     displayResults55.visible=true;
+
+                    graphScore1.visible=true;
+                    graphScore11.visible=true;
+                    graphScore12.visible=true;
+                    graphScore13.visible=true;
+                    graphScore14.visible=true;
+                    graphScore15.visible=true;
+
+                    graphScore2.visible=true;
+                    graphScore21.visible=true;
+                    graphScore22.visible=true;
+                    graphScore23.visible=true;
+                    graphScore24.visible=true;
+                    graphScore25.visible=true;
+
+                    graphScore3.visible=true;
+                    graphScore31.visible=true;
+                    graphScore32.visible=true;
+                    graphScore33.visible=true;
+                    graphScore34.visible=true;
+                    graphScore35.visible=true;
+
+                    graphScore4.visible=true;
+                    graphScore41.visible=true;
+                    graphScore42.visible=true;
+                    graphScore43.visible=true;
+                    graphScore44.visible=true;
+                    graphScore45.visible=true;
+
+                    graphScore5.visible=true;
+                    graphScore51.visible=true;
+                    graphScore52.visible=true;
+                    graphScore53.visible=true;
+                    graphScore54.visible=true;
+                    graphScore55.visible=true;
 
                     displayExplanation1Row.visible=true
                     displayExplanation2Row.visible=true
@@ -1400,6 +2282,40 @@ anchors.fill:parent
                     displayResults54.visible=true;
                     displayResults55.visible=true;
 
+                    graphScore1.visible=true;
+                    graphScore11.visible=true;
+                    graphScore12.visible=true;
+                    graphScore13.visible=true;
+                    graphScore14.visible=true;
+                    graphScore15.visible=true;
+
+                    graphScore2.visible=true;
+                    graphScore21.visible=true;
+                    graphScore22.visible=true;
+                    graphScore23.visible=true;
+                    graphScore24.visible=true;
+                    graphScore25.visible=true;
+
+                    graphScore3.visible=true;
+                    graphScore31.visible=true;
+                    graphScore32.visible=true;
+                    graphScore33.visible=true;
+                    graphScore34.visible=true;
+                    graphScore35.visible=true;
+
+                    graphScore4.visible=true;
+                    graphScore41.visible=true;
+                    graphScore42.visible=true;
+                    graphScore43.visible=true;
+                    graphScore44.visible=true;
+                    graphScore45.visible=true;
+
+                    graphScore5.visible=true;
+                    graphScore51.visible=true;
+                    graphScore52.visible=true;
+                    graphScore53.visible=true;
+                    graphScore54.visible=true;
+                    graphScore55.visible=true;
 
                     displayExplanation1Row.visible=true
                     displayExplanation2Row.visible=true
@@ -1608,6 +2524,40 @@ anchors.fill:parent
                     displayResults54.visible=true;
                     displayResults55.visible=true;
 
+                    graphScore1.visible=true;
+                    graphScore11.visible=true;
+                    graphScore12.visible=true;
+                    graphScore13.visible=true;
+                    graphScore14.visible=true;
+                    graphScore15.visible=true;
+
+                    graphScore2.visible=true;
+                    graphScore21.visible=true;
+                    graphScore22.visible=true;
+                    graphScore23.visible=true;
+                    graphScore24.visible=true;
+                    graphScore25.visible=true;
+
+                    graphScore3.visible=true;
+                    graphScore31.visible=true;
+                    graphScore32.visible=true;
+                    graphScore33.visible=true;
+                    graphScore34.visible=true;
+                    graphScore35.visible=true;
+
+                    graphScore4.visible=true;
+                    graphScore41.visible=true;
+                    graphScore42.visible=true;
+                    graphScore43.visible=true;
+                    graphScore44.visible=true;
+                    graphScore45.visible=true;
+
+                    graphScore5.visible=true;
+                    graphScore51.visible=true;
+                    graphScore52.visible=true;
+                    graphScore53.visible=true;
+                    graphScore54.visible=true;
+                    graphScore55.visible=true;
 
                     displayExplanation1Row.visible=true
                     displayExplanation2Row.visible=true
@@ -1815,6 +2765,40 @@ anchors.fill:parent
                     displayResults54.visible=true;
                     displayResults55.visible=true;
 
+                    graphScore1.visible=true;
+                    graphScore11.visible=true;
+                    graphScore12.visible=true;
+                    graphScore13.visible=true;
+                    graphScore14.visible=true;
+                    graphScore15.visible=true;
+
+                    graphScore2.visible=true;
+                    graphScore21.visible=true;
+                    graphScore22.visible=true;
+                    graphScore23.visible=true;
+                    graphScore24.visible=true;
+                    graphScore25.visible=true;
+
+                    graphScore3.visible=true;
+                    graphScore31.visible=true;
+                    graphScore32.visible=true;
+                    graphScore33.visible=true;
+                    graphScore34.visible=true;
+                    graphScore35.visible=true;
+
+                    graphScore4.visible=true;
+                    graphScore41.visible=true;
+                    graphScore42.visible=true;
+                    graphScore43.visible=true;
+                    graphScore44.visible=true;
+                    graphScore45.visible=true;
+
+                    graphScore5.visible=true;
+                    graphScore51.visible=true;
+                    graphScore52.visible=true;
+                    graphScore53.visible=true;
+                    graphScore54.visible=true;
+                    graphScore55.visible=true;
 
                     displayExplanation1Row.visible=true
                     displayExplanation2Row.visible=true
