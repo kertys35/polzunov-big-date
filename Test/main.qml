@@ -209,16 +209,7 @@ Window {
 
 "
     ]
-  //  "Преобладает экстроверсия - типичные экстраверты отличаются общительностью\nимеют большой круг друзей и знакомых, ощущают потребность общения с людьми.",
-  //  "Преобладает интроверсия - основными особенностями интровертов являются отсутствие уверенности\n в отношении правильности своего поведения и невнимание к происходящим вокруг событиям.",
-  //  "Преобладает привязанность к людям - такие лица испытывают потребность быть рядом с другими людьми.\nКак правило, это добрые, отзывчивые люди, они хорошо понимают других людей.",
-   // "Преобладает обособленность - такие люди предпочитают держать дистанцию.\nОни избегают общественных поручений, небрежны в выполнении своих обязанностей и обещаний.",
-  //  "Преобладает самоконтроль - выделяются такие черты личности, как добросовестность, ответственность,\nобязательность, точность и аккуратность в делах",
-  //  "Преобладает импульсивность - для такого типа личности характерны естественность поведения,\nбеспечность, склонность к необдуманным поступкам",
-   // "Преобладает эмоциональная неустойчивость - такие люди чувствуют себя беспомощными, неспособными\nсправиться с жизненными трудностями. Их поведение во многом обусловлено ситуацией.",
-   // "Преобладает эмоциональная устойчивость - такие люди самодостаточны, уверенны в своих силах,\nэмоционально зрелые, смело смотрящие в лицо фактам,спокойные.",
-   // "Преобладает экспрессивность - для человека с такой чертой характерно легкое отношение к жизни. \nОн производит впечатление беззаботного и безответственного человека.",
-    //"Преобладает практичность - человек с выраженной чертой практичности\nпо своему складу реалист, хорошо адаптирован в обыденной жизни.\nОн трезво и реалистично смотрит на жизнь."
+
     property int questionNum: 0;                                                                      //номер вопроса
 
     property int score1: 0;                                                                //Экстраверсия – интроверсия
@@ -358,7 +349,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 100
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults1
@@ -373,7 +363,12 @@ anchors.fill:parent
                     Rectangle{
                         width:(300/questionsString.length)
                         height:20
-                        color:"green"
+                        color: if(score1 >= 0 && score1 <= 40)
+                                   return "red";
+                                else if(score1 >= 41 && score1 <= 50)
+                                   return "yellow";
+                                else if(score1 >= 51 && score1 <= 75)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -393,7 +388,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults11
@@ -408,7 +402,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score11 >= 0 && score11 <= 6)
+                                   return "red";
+                                else if(score11 >= 7 && score11 <= 11)
+                                   return "yellow";
+                                else if(score11 >= 12 && score11 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -428,7 +427,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults12
@@ -443,7 +441,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score12 >= 0 && score12 <= 6)
+                                   return "red";
+                                else if(score12 >= 7 && score12 <= 11)
+                                   return "yellow";
+                                else if(score12 >= 12 && score12 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -463,7 +466,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults13
@@ -478,7 +480,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score13 >= 0 && score13 <= 6)
+                                   return "red";
+                                else if(score13 >= 7 && score13 <= 11)
+                                   return "yellow";
+                                else if(score13 >= 12 && score13 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -498,7 +505,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults14
@@ -513,7 +519,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score14 >= 0 && score14 <= 6)
+                                   return "red";
+                                else if(score14 >= 7 && score14 <= 11)
+                                   return "yellow";
+                                else if(score14 >= 12 && score14 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -533,7 +544,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults15
@@ -548,7 +558,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score15 >= 0 && score15 <= 6)
+                                   return "red";
+                                else if(score15 >= 7 && score15 <= 11)
+                                   return "yellow";
+                                else if(score15 >= 12 && score15 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -576,7 +591,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 180
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults2
@@ -591,7 +605,12 @@ anchors.fill:parent
                     Rectangle{
                         width:(300/questionsString.length)
                         height:20
-                        color:"green"
+                        color: if(score2 >= 0 && score2 <= 40)
+                                   return "red";
+                                else if(score2 >= 41 && score2 <= 50)
+                                   return "yellow";
+                                else if(score2 >= 51 && score2 <= 75)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -611,7 +630,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults21
@@ -626,7 +644,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score21 >= 0 && score21 <= 6)
+                                   return "red";
+                                else if(score21 >= 7 && score21 <= 11)
+                                   return "yellow";
+                                else if(score21 >= 12 && score21 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -646,7 +669,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults22
@@ -661,7 +683,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score22 >= 0 && score22 <= 6)
+                                   return "red";
+                                else if(score22 >= 7 && score22 <= 11)
+                                   return "yellow";
+                                else if(score22 >= 12 && score22 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -681,7 +708,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults23
@@ -696,7 +722,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score23 >= 0 && score23 <= 6)
+                                   return "red";
+                                else if(score23 >= 7 && score23 <= 11)
+                                   return "yellow";
+                                else if(score23 >= 12 && score23 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -716,7 +747,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults24
@@ -731,7 +761,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score24 >= 0 && score24 <= 6)
+                                   return "red";
+                                else if(score24 >= 7 && score24 <= 11)
+                                   return "yellow";
+                                else if(score24 >= 12 && score24 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -751,7 +786,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults25
@@ -766,7 +800,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score25 >= 0 && score25 <= 6)
+                                   return "red";
+                                else if(score25 >= 7 && score25 <= 11)
+                                   return "yellow";
+                                else if(score25 >= 12 && score25 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -794,7 +833,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y:280
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults3
@@ -809,7 +847,12 @@ anchors.fill:parent
                     Rectangle{
                         width:(300/questionsString.length)
                         height:20
-                        color:"green"
+                        color: if(score3 >= 0 && score3 <= 40)
+                                   return "red";
+                                else if(score3 >= 41 && score3 <= 50)
+                                   return "yellow";
+                                else if(score3 >= 51 && score3 <= 75)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -829,7 +872,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults31
@@ -844,7 +886,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score31 >= 0 && score31 <= 6)
+                                   return "red";
+                                else if(score31 >= 7 && score31 <= 11)
+                                   return "yellow";
+                                else if(score31 >= 12 && score31 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -864,7 +911,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults32
@@ -879,7 +925,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score32 >= 0 && score32 <= 6)
+                                   return "red";
+                                else if(score32 >= 7 && score32 <= 11)
+                                   return "yellow";
+                                else if(score32 >= 12 && score32 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -899,7 +950,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults33
@@ -914,7 +964,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score33 >= 0 && score33 <= 6)
+                                   return "red";
+                                else if(score33 >= 7 && score33 <= 11)
+                                   return "yellow";
+                                else if(score33 >= 12 && score33 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -934,7 +989,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults34
@@ -949,7 +1003,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score34 >= 0 && score34 <= 6)
+                                   return "red";
+                                else if(score34 >= 7 && score34 <= 11)
+                                   return "yellow";
+                                else if(score34 >= 12 && score34 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -969,7 +1028,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults35
@@ -984,7 +1042,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score35 >= 0 && score35 <= 6)
+                                   return "red";
+                                else if(score35 >= 7 && score35 <= 11)
+                                   return "yellow";
+                                else if(score35 >= 12 && score35 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -1012,7 +1075,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y:380
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults4
@@ -1027,7 +1089,12 @@ anchors.fill:parent
                     Rectangle{
                         width:(300/questionsString.length)
                         height:20
-                        color:"green"
+                        color: if(score4 >= 0 && score4 <= 40)
+                                   return "red";
+                                else if(score4 >= 41 && score4 <= 50)
+                                   return "yellow";
+                                else if(score4 >= 51 && score4 <= 75)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -1047,7 +1114,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults41
@@ -1062,7 +1128,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score41 >= 0 && score41 <= 6)
+                                   return "red";
+                                else if(score41 >= 7 && score41 <= 11)
+                                   return "yellow";
+                                else if(score41 >= 12 && score41 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -1082,7 +1153,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults42
@@ -1097,7 +1167,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score42 >= 0 && score42 <= 6)
+                                   return "red";
+                                else if(score42 >= 7 && score42 <= 11)
+                                   return "yellow";
+                                else if(score42 >= 12 && score42 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -1117,7 +1192,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults43
@@ -1132,7 +1206,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score43 >= 0 && score43 <= 6)
+                                   return "red";
+                                else if(score43 >= 7 && score43 <= 11)
+                                   return "yellow";
+                                else if(score43 >= 12 && score43 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -1152,7 +1231,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults44
@@ -1167,7 +1245,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score44 >= 0 && score44 <= 6)
+                                   return "red";
+                                else if(score44 >= 7 && score44 <= 11)
+                                   return "yellow";
+                                else if(score44 >= 12 && score44 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -1187,7 +1270,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults45
@@ -1202,7 +1284,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score45 >= 0 && score45 <= 6)
+                                   return "red";
+                                else if(score45 >= 7 && score45 <= 11)
+                                   return "yellow";
+                                else if(score45 >= 12 && score45 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -1230,7 +1317,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y:480
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults5
@@ -1245,7 +1331,12 @@ anchors.fill:parent
                     Rectangle{
                         width:(300/questionsString.length)
                         height:20
-                        color:"green"
+                        color: if(score5 >= 0 && score5 <= 40)
+                                   return "red";
+                                else if(score5 >= 41 && score5 <= 50)
+                                   return "yellow";
+                                else if(score5 >= 51 && score5 <= 75)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -1265,7 +1356,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults51
@@ -1280,7 +1370,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score51 >= 0 && score51 <= 6)
+                                   return "red";
+                                else if(score51 >= 7 && score51 <= 11)
+                                   return "yellow";
+                                else if(score51 >= 12 && score51 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -1300,7 +1395,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults52
@@ -1315,7 +1409,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score52 >= 0 && score52 <= 6)
+                                   return "red";
+                                else if(score52 >= 7 && score52 <= 11)
+                                   return "yellow";
+                                else if(score52 >= 12 && score52 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -1335,7 +1434,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults53
@@ -1350,7 +1448,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score53 >= 0 && score53 <= 6)
+                                   return "red";
+                                else if(score53 >= 7 && score53 <= 11)
+                                   return "yellow";
+                                else if(score53 >= 12 && score53 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -1370,7 +1473,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults54
@@ -1385,7 +1487,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score54 >= 0 && score54 <= 6)
+                                   return "red";
+                                else if(score54 >= 7 && score54 <= 11)
+                                   return "yellow";
+                                else if(score54 >= 12 && score54 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
@@ -1405,7 +1512,6 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            y: 80
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults55
@@ -1420,7 +1526,12 @@ anchors.fill:parent
                     Rectangle{
                         width:15
                         height:15
-                        color:"green"
+                        color: if(score55 >= 0 && score55 <= 6)
+                                   return "red";
+                                else if(score55 >= 7 && score55 <= 11)
+                                   return "yellow";
+                                else if(score55 >= 12 && score55 <= 15)
+                                   return "green";
                     }
                 }
                 Repeater{
