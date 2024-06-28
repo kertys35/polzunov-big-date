@@ -2265,11 +2265,12 @@ anchors.fill:parent
                     graphScore54.visible=true;
                     graphScore55.visible=true;
 
-                    displayExplanation1Row.visible=true
-                    displayExplanation2Row.visible=true
-                    displayExplanation3Row.visible=true
-                    displayExplanation4Row.visible=true
-                    displayExplanation5Row.visible=true
+                    displayExplanationScore.visible=true;
+                    displayExplanation1Row.visible=true;
+                    displayExplanation2Row.visible=true;
+                    displayExplanation3Row.visible=true;
+                    displayExplanation4Row.visible=true;
+                    displayExplanation5Row.visible=true;
 
                     displayQuestion.visible=false;
                     displayQuestionNum.visible=false;
@@ -2507,11 +2508,12 @@ anchors.fill:parent
                     graphScore54.visible=true;
                     graphScore55.visible=true;
 
-                    displayExplanation1Row.visible=true
-                    displayExplanation2Row.visible=true
-                    displayExplanation3Row.visible=true
-                    displayExplanation4Row.visible=true
-                    displayExplanation5Row.visible=true
+                    displayExplanationScore.visible=true;
+                    displayExplanation1Row.visible=true;
+                    displayExplanation2Row.visible=true;
+                    displayExplanation3Row.visible=true;
+                    displayExplanation4Row.visible=true;
+                    displayExplanation5Row.visible=true;
 
                     displayQuestion.visible=false;
                     displayQuestionNum.visible=false;
@@ -2749,11 +2751,12 @@ anchors.fill:parent
                     graphScore54.visible=true;
                     graphScore55.visible=true;
 
-                    displayExplanation1Row.visible=true
-                    displayExplanation2Row.visible=true
-                    displayExplanation3Row.visible=true
-                    displayExplanation4Row.visible=true
-                    displayExplanation5Row.visible=true
+                    displayExplanationScore.visible=true;
+                    displayExplanation1Row.visible=true;
+                    displayExplanation2Row.visible=true;
+                    displayExplanation3Row.visible=true;
+                    displayExplanation4Row.visible=true;
+                    displayExplanation5Row.visible=true;
 
                     displayQuestion.visible=false;
                     displayQuestionNum.visible=false;
@@ -2990,11 +2993,12 @@ anchors.fill:parent
                     graphScore54.visible=true;
                     graphScore55.visible=true;
 
-                    displayExplanation1Row.visible=true
-                    displayExplanation2Row.visible=true
-                    displayExplanation3Row.visible=true
-                    displayExplanation4Row.visible=true
-                    displayExplanation5Row.visible=true
+                    displayExplanationScore.visible=true;
+                    displayExplanation1Row.visible=true;
+                    displayExplanation2Row.visible=true;
+                    displayExplanation3Row.visible=true;
+                    displayExplanation4Row.visible=true;
+                    displayExplanation5Row.visible=true;
 
                     displayQuestion.visible=false;
                     displayQuestionNum.visible=false;
