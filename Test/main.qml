@@ -1816,7 +1816,7 @@ anchors.fill:parent
         height: 75
         Text{
             anchors.centerIn: parent
-            text:"Полностью неверно"
+            text:"Полностью верно"
         }
         MouseArea{
             id:buttonDisagreeCompletelyMouseArea
@@ -2058,7 +2058,7 @@ anchors.fill:parent
         height: 75
         Text{
             anchors.centerIn: parent
-            text:"Частично неверно"
+            text:"Частично верно"
         }
         MouseArea{
             id:buttonDisagreePartiallyMouseArea
@@ -2541,7 +2541,7 @@ anchors.fill:parent
         height: 75
         Text{
             anchors.centerIn: parent
-            text:"Частично верно"
+            text:"Частично неверно"
         }
         MouseArea{
             id:buttonAgreePartiallyMouseArea
@@ -2783,7 +2783,7 @@ anchors.fill:parent
         height: 75
         Text{
             anchors.centerIn: parent
-            text:"Полностью верно"
+            text:"Полностью неверно"
         }
         MouseArea{
             id:buttonAgreeCompletelyMouseArea
