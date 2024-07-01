@@ -1,7 +1,6 @@
 QT += quick
 
 SOURCES += \
-        connecttodatabase.cpp \
         main.cpp
 
 resources.files = main.qml 
@@ -19,5 +18,7 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-HEADERS += \
-    ConnectToDatabase.h
+HEADERS +=
+
+DISTFILES += \
+    main.qml
