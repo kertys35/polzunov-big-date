@@ -1,6 +1,7 @@
-QT += quick
+QT += quick widgets sql
 
 SOURCES += \
+        DBclass.cpp \
         main.cpp
 
 resources.files = main.qml 
@@ -18,7 +19,10 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-HEADERS +=
+HEADERS += \
+    ConnectToDatabase.h \
+    DBclass.h \
+    sqlQueryModel.h
 
 DISTFILES += \
     main.qml
