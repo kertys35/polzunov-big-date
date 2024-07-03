@@ -2024,7 +2024,8 @@ anchors.fill:parent
                     buttonAgreeCompletely.visible=false;
                     buttonAgreePartially.visible=false;
 
-                    database.insertIntoTable(score1,score2,score3,score4,score5);
+                    database.updateTable(score1,score2,score3,score4,score5, 0);    //Изменение уже существующей записи
+                    database.insertIntoTable(score1,score2,score3,score4,score5);   //Добавление новой записи
                 }
             }
         }

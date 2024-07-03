@@ -7,70 +7,65 @@ DBclass::DBclass(QObject *parent): QObject{parent}
 //
 void DBclass::connectToDatabase()
 {
-    if(!QFile("C:/Users/Papa/Desktop/Pracatice/polzunov-big-date/" DATABASE_NAME).exists()){
-        this->restoreDataBase();
-    } else {
-        this->openDataBase();
-    }
+    db=QSqlDatabase::addDatabase("QPSQL");  //тип базы данных
+    db.setHostName(DATABASE_HOSTNAME);            //адрес сервера
+    db.setDatabaseName(DATABASE_NAME);        //название таблицы
+    db.setUserName(DATABASE_USERNAME);             //имя пользователя
+    db.setPassword(DATABASE_PASSWORD);
+    db.setPort(DATABASE_PORT);
+    this->openDataBase();
 }
-//
+//Открытие БД
 bool DBclass::openDataBase()
 {
-    db=QSqlDatabase::addDatabase("QPSQL");
-    db.setHostName(DATABASE_HOSTNAME);
-    db.setDatabaseName("C:/Users/Papa/Desktop/Pracatice/polzunov-big-date/" DATABASE_NAME); //Путь до БД
     if(db.open())
+    {
+        qDebug() << "Есть подключение";
         return true;
+    }
     else
-        return false;
-}
-//Методы восстановления базы данных
-bool DBclass::restoreDataBase()
-{
-    // Если база данных открылась ...
-    if(this->openDataBase()){
-        // Производим восстановление базы данных
-        return (this->createTable()) ? true : false;
-    } else {
-        qDebug() << "Не удалось восстановить базу данных";
+    {
+         qDebug() << "Нет подключения";
         return false;
     }
-    return false;
 }
-//
+//Закрытие БД
 void DBclass::closeDataBase()
 {
     db.close();
 }
-//
+//Вставление данных в БД
 bool DBclass::insertIntoTable(const QVariantList &data)
 {
     QSqlQuery query;
 
     //Формируем вставку в таблицу
-    query.prepare("insert into" TABLE " ( " TABLE_FIRST_SCORE ", "
-                                            TABLE_SECOND_SCORE ", "
-                                            TABLE_THIRD_SCORE ", "
-                                            TABLE_FOURTH_SCORE ", "
-                                            TABLE_FIFTH_SCORE " ) "
-                  "values (FIRST_SCORE, SECOND_SCORE, THIRD_SCORE, FOURTH_SCORE, FIFTH_SCORE");
-    //Привязываем значения, которые мы пытаемся вставить
-    query.bindValue("FIRST_SCORE", data[0]);
-    query.bindValue("SECOND_SCORE", data[1]);
-    query.bindValue("THIRD_SCORE", data[2]);
-    query.bindValue("FOURTH_SCORE", data[3]);
-    query.bindValue("FIFTH_SCORE", data[4]);
+    query.prepare("INSERT INTO \"UserName\" (\"FirstResult\", \"SecondResult\", \"ThirdResult\", \"FourthResult\", \"FifthResult\")"
+                   "VALUES (:FirstScore, :SecondScore, :ThirdScore, :FourthScore, :FifthScore);");
+    query.bindValue(":FirstScore", data[0]);
+    query.bindValue(":SecondScore", data[1]);
+    query.bindValue(":ThirdScore", data[2]);
+    query.bindValue(":FourthScore", data[3]);
+    query.bindValue(":FifthScore", data[4]);
     //Выполняется вставка методом exec()
     if(!query.exec())
     {
+        qDebug() << "Не удалось произвести запрос добавления";
+        qDebug() << query.lastError().text();
         return false;
     }
     else
     {
+        qDebug() <<"Успешно добавлена новая запись";
         return true;
     }
 }
-//
+//Получить ID пользователя
+int DBclass::get_id()
+{
+    return true;
+}
+//Подготовка данных для вставки в БД
 bool DBclass::insertIntoTable(const QString &FirstResult, const QString &SecondResult, const QString &ThirdResult,
                               const QString &FourthResult, const QString &FifthResult)
 {
@@ -81,41 +76,43 @@ bool DBclass::insertIntoTable(const QString &FirstResult, const QString &SecondR
     data.append(FourthResult);
     data.append(FifthResult);
     if(insertIntoTable(data))
+    {
         return true;
+    }
     else
+    {
         return false;
+    }
 }
-//
+//Обновление данных в БД
 bool DBclass::updateTable(const QVariantList &data, const int id)
 {
     QSqlQuery query;
 
     //Формируем вставку в таблицу
-    query.prepare("Update" TABLE " Set ( " TABLE_FIRST_SCORE ", "
-                  TABLE_SECOND_SCORE ", "
-                  TABLE_THIRD_SCORE ", "
-                  TABLE_FOURTH_SCORE ", "
-                  TABLE_FIFTH_SCORE " ) "
-                  "values (FIRST_SCORE, SECOND_SCORE, THIRD_SCORE, FOURTH_SCORE, FIFTH_SCORE"
-                  "Where User_id= :ID;");
+    query.prepare("Update \"UserName\" SET \"FirstResult\"=:FIRST_SCORE, \"SecondResult\"=:SECOND_SCORE,"
+                  " \"ThirdResult\"=:THIRD_SCORE, \"FourthResult\"=:FOURTH_SCORE, \"FifthResult\"=:FIFTH_SCORE WHERE \"User_id\"=:ID;");
     //Привязываем значения, которые мы пытаемся вставить
-    query.bindValue("FIRST_SCORE", data[0]);
-    query.bindValue("SECOND_SCORE", data[1]);
-    query.bindValue("THIRD_SCORE", data[2]);
-    query.bindValue("FOURTH_SCORE", data[3]);
-    query.bindValue("FIFTH_SCORE", data[4]);
+    query.bindValue(":FIRST_SCORE", data[0]);
+    query.bindValue(":SECOND_SCORE", data[1]);
+    query.bindValue(":THIRD_SCORE", data[2]);
+    query.bindValue(":FOURTH_SCORE", data[3]);
+    query.bindValue(":FIFTH_SCORE", data[4]);
     query.bindValue(":ID", id);
     //Выполняется вставка методом exec()
     if(!query.exec())
     {
+        qDebug() << "Не удалось произвести запрос изменения";
+        qDebug() << query.lastError().text();
         return false;
     }
     else
     {
+        qDebug() <<"Успешно изменена запись";
         return true;
     }
 }
-//
+//Подготовка данных для обновления БД
 bool DBclass::updateTable(const QString &FirstResult, const QString &SecondResult, const QString &ThirdResult,
                           const QString &FourthResult, const QString &FifthResult, int id)
 {
@@ -130,7 +127,7 @@ bool DBclass::updateTable(const QString &FirstResult, const QString &SecondResul
     else
         return false;
 }
-//
+//Удалениие записи из БД
 bool DBclass::removeRecord(const int id)
 {
     QSqlQuery query;
@@ -142,25 +139,4 @@ bool DBclass::removeRecord(const int id)
         return true;
     return false;
 }
-//
-bool DBclass::createTable()
-{
-    QSqlQuery query;
-    if(!query.exec( "CREATE TABLE " TABLE " ("
-                    "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    "FIRST_SCORE      VARCHAR(255)    NOT NULL,"
-                    "SECOND_SCORE     VARCHAR(255)    NOT NULL,"
-                    "THIRD_SCORE      VARCHAR(255)    NOT NULL,"
-                    "FOURTH_SCORE     VARCHAR(255)    NOT NULL,"
-                    "FIFTH_SCORE      VARCHAR(255)    NOT NULL"
-                    " )"
-                    ))
-    {
-        qDebug() << "DataBase: error of create " << TABLE;
-        qDebug() << query.lastError().text();
-        return false;
-    } else {
-        return true;
-    }
-    return false;
-}
+

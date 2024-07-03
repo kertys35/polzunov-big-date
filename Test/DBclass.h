@@ -10,11 +10,14 @@
 #include <QDate>
 #include <QDebug>
 
-#define DATABASE_HOSTNAME               "NameTable"         //Название БД
-#define DATABASE_NAME                   "NameTable.db"      //Называние БД
+#define DATABASE_HOSTNAME               "127.0.0.1"         //Название БД
+#define DATABASE_NAME                   "NameTable"      //Называние БД
+#define DATABASE_USERNAME               "postgres"       //Имя пользователя
+#define DATABASE_PASSWORD               "123"           //Пароль от БД
+#define DATABASE_PORT                   5432            //Порт подключения
 
 #define TABLE                           "NameTable"         //Название таблицы БД
-#define TABLE_USERNAME                  "UserName"          //Колонка с именем пользователя
+#define TABLE_NAME                       "UserName"          //Колонка с именем пользователя
 #define TABLE_FIRST_SCORE               "FirstResult"       //Колонка с результатами по Эксраверсии – Интроверсии
 #define TABLE_SECOND_SCORE              "SecondResult"      //Колонка с результатами по Привязанности – Обособленности
 #define TABLE_THIRD_SCORE               "ThirdResult"       //Колонка с результатами по Самоконтролю – Импульсивности
@@ -30,8 +33,6 @@ public:
 private:
     bool openDataBase();        //Открытие БД
     void closeDataBase();       //Закрытие БД
-    bool restoreDataBase();     // Восстановление БД
-    bool createTable();         // Создание таблицы в БД
 public slots:
     bool insertIntoTable(const QVariantList &data);
     bool insertIntoTable(const QString &FirstResult, const QString &SecondResult, const QString &ThirdResult,
@@ -40,6 +41,7 @@ public slots:
     bool updateTable(const QString &FirstResult, const QString &SecondResult, const QString &ThirdResult,
                      const QString &FourthResult, const QString &FifthResult, int id);
     bool removeRecord(const int id);
+    int get_id();
 signals:
 
 private:
