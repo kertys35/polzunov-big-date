@@ -40,8 +40,7 @@ public slots:
     bool updateTable(const QVariantList &data, const int id);
     bool updateTable(const QString &FirstResult, const QString &SecondResult, const QString &ThirdResult,
                      const QString &FourthResult, const QString &FifthResult, int id);
-    bool removeRecord(const int id);
-    int get_id();
+    bool checkID(int id);
 signals:
 
 private:

@@ -25,6 +25,66 @@ Window {
         "Я методичен и пунктуален во всем",
         "Мои чувства легко уязвимы и ранимы",
         "Мне не интересно, когда ответ ясен заранее",                       //15 вопросов
+        "Я люблю, чтобы другие быстро выполняли мои распоряжения",
+        "Я уступчивый и склонный к компромиссам человек",
+        "Я проявляю настойчивость, решая трудную задачу",
+        "В трудных ситуациях я весь сжимаюсь от напряжения",
+        "У меня очень живое воображение",
+        "Мне часто приходится быть лидером, проявлять инициативу",
+        "Я всегда готов оказать помощь и разделить чужие трудности",
+        "Я очень старательный во всех делах человек",
+        "У меня часто выступает холодный пот и дрожат руки",
+        "Мне нравится мечтать",
+        "Часто случается, что я руковожу, отдаю распоряжения другим людям",
+        "Я предпочитаю сотрудничать с другими, чем соперничать",
+        "Я серьезно и прилежно отношусь к работе",
+        "В необычной обстановке я часто нервничаю",
+        "Иногда я погружаюсь в глубокие размышления",
+        "Мне нравится общаться с незнакомыми людьми",
+        "Большинство людей добры от природы",
+        "Люди часто доверяют мне ответственные дела",
+        "Иногда я чувствую себя одиноко, тоскливо и все валится из рук",
+        "Я хорошо знаю, что такое красота и элегантность",
+        "Мне нравится приобретать новых друзей и знакомых",
+        "Люди, с которыми я общаюсь, обычно мне нравятся",
+        "Я требователен и строг в работе",
+        "Когда я сильно расстроен, у меня тяжело на душе",
+        "Музыка способна так захватить меня, что я теряю чувство времени",
+        "Я люблю находиться в больших и веселых компаниях",
+        "Большинство людей честные, и им можно доверять",
+        "Я обычно работаю добросовестно",
+        "Я легко впадаю в депрессию",
+        "Настоящее произведение искусства вызывает у меня восхищение",
+        "«Болея» на спортивных соревнованиях, я забываю обо всем",
+        "Я стараюсь проявлять чуткость, когда имею дело с людьми",
+        "Я редко делаю необдуманно то, что хочу сделать",
+        "У меня много слабостей и недостатков",
+        "Я хорошо понимаю свое душевное состояние",
+        "Я часто игнорирую сигналы, предупреждающие об опасности",
+        "Радость других я разделяю как собственную",
+        "Я обычно контролирую свои чувства и желания",
+        "Если я терплю неудачу, то обычно обвиняю себя",
+        "Я верю, что чувства делают мою жизнь содержательнее",
+        "Мне нравятся карнавальные шествия и демонстрации",
+        "Я стараюсь поставить себя на место другого человека, чтобы его понять",
+        "В магазине я обычно долго выбираю то, что надумал купить",
+        "Иногда я чувствую себя жалким человеком",
+        "Я легко «вживаюсь» в переживания вымышленного героя",
+        "Я чувствую себя счастливым, когда на меня обращают внимание",
+        "В каждом человеке есть нечто, за что его можно уважать",
+        "Обычно я хорошо думаю, прежде чем действую",
+        "Часто у меня бывают взлеты и падения настроения",
+        "Иногда я чувствую себя фокусником, подшучивающим над людьми",
+        "Я привлекателен для лиц противоположного иола",
+        "Я всегда стараюсь быть добрым и внимательным с каждым человеком",
+        "Перед путешествием я намечаю точный план",
+        "Мое настроение легко меняется на противоположное",
+        "Я думаю, что жизнь – это азартная игра",
+        "Мне нравится выглядеть вызывающе",
+        "Некоторые говорят, что я снисходителен к окружающим",
+        "Я точно и методично выполняю свою работу",
+        "Иногда я бываю настолько взволнован, что даже плачу",
+        "Иногда я чувствую, что могу открыть в себе нечто новое"
 
     ];
     property variant resultExplanation: [                                                           //Объяснение результата
@@ -228,6 +288,10 @@ Window {
 максимальное количество – 75.
 Условно балльные оценки можно разделить на высокие (51–75 баллов),
 средние (41–50 баллов) и низкие (15–40 баллов)."
+    property int user_id: 10;                                                              //Идентификатор пользователя
+
+    property int screenMenu: 1;                                                           //Флаг меню польззователя
+
     property int score1: 0;                                                                //Экстраверсия – интроверсия
     property int score11: 0;                                                               //Активность - пассивность
     property int score12: 0;                                                               //Доминирование-подчиненность
@@ -295,7 +359,7 @@ anchors.fill:parent
                 Text{
                     id:buttonQuestionBack
                     anchors.centerIn: parent
-                    text:"Выйти из теста"
+                    text:"Выйти"
                 }
                 MouseArea{
                     id:buttonQuestionBackMouseArea
@@ -309,8 +373,7 @@ anchors.fill:parent
                         else if(userSex > 0 && questionNum == 0)                                             //Вернуться на экран выбора пола
                         {
                             userSex=0;
-                            buttonMale.visible=true;
-                            buttonFemale.visible=true;
+                            userSexRow.visible=true;
                             buttonQuestionBack.text="Выйти из теста";
 
                             buttonRow.visible=false;
@@ -318,10 +381,101 @@ anchors.fill:parent
                             displayQuestion.visible=false;
                             displayQuestionNum.visible=false;
                             graphQuestionNum.visible=false;
+
+                            screenMenu=0;
                         }
-                        else if(questionNum == 0 || testEnd)                //Выйти из теста
+
+                        else if((questionNum == 0 || testEnd) && screenMenu==0)                //Выйти из теста
                         {
-                            testScreen.close();          //PLACEHOLDER вставить возвращение на предыдущую страницу
+                            userSexRow.visible=false;
+                            buttonQuestionBack.text="Выйти";
+                            displayUserQuestion.visible=false;
+
+                            screenMenu=1;
+                            displayTextMenu.visible=true;
+                            buttonStart.visible=true;
+
+                            displayResult.visible=false;                          //Скрытие результатов теста
+                            displayResults1.visible=false;
+                            displayResults11.visible=false;
+                            displayResults12.visible=false;
+                            displayResults13.visible=false;
+                            displayResults14.visible=false;
+                            displayResults15.visible=false;
+
+                            displayResults2.visible=false;
+                            displayResults21.visible=false;
+                            displayResults22.visible=false;
+                            displayResults23.visible=false;
+                            displayResults24.visible=false;
+                            displayResults25.visible=false;
+
+                            displayResults3.visible=false;
+                            displayResults31.visible=false;
+                            displayResults32.visible=false;
+                            displayResults33.visible=false;
+                            displayResults34.visible=false;
+                            displayResults35.visible=false;
+
+                            displayResults4.visible=false;
+                            displayResults41.visible=false;
+                            displayResults42.visible=false;
+                            displayResults43.visible=false;
+                            displayResults44.visible=false;
+                            displayResults45.visible=false;
+
+                            displayResults5.visible=false;
+                            displayResults51.visible=false;
+                            displayResults52.visible=false;
+                            displayResults53.visible=false;
+                            displayResults54.visible=false;
+                            displayResults55.visible=false;
+
+                            graphScore1.visible=false;
+                            graphScore11.visible=false;
+                            graphScore12.visible=false;
+                            graphScore13.visible=false;
+                            graphScore14.visible=false;
+                            graphScore15.visible=false;
+
+                            graphScore2.visible=false;
+                            graphScore21.visible=false;
+                            graphScore22.visible=false;
+                            graphScore23.visible=false;
+                            graphScore24.visible=false;
+                            graphScore25.visible=false;
+
+                            graphScore3.visible=false;
+                            graphScore31.visible=false;
+                            graphScore32.visible=false;
+                            graphScore33.visible=false;
+                            graphScore34.visible=false;
+                            graphScore35.visible=false;
+
+                            graphScore4.visible=false;
+                            graphScore41.visible=false;
+                            graphScore42.visible=false;
+                            graphScore43.visible=false;
+                            graphScore44.visible=false;
+                            graphScore45.visible=false;
+
+                            graphScore5.visible=false;
+                            graphScore51.visible=false;
+                            graphScore52.visible=false;
+                            graphScore53.visible=false;
+                            graphScore54.visible=false;
+                            graphScore55.visible=false;
+
+                            displayExplanationScore.visible=false;
+                            displayExplanation1Row.visible=false;
+                            displayExplanation2Row.visible=false;
+                            displayExplanation3Row.visible=false;
+                            displayExplanation4Row.visible=false;
+                            displayExplanation5Row.visible=false;
+                        }
+                        else
+                        {
+                            testScreen.close();
                         }
                     }
                 }
@@ -332,7 +486,7 @@ anchors.fill:parent
             id: displayUserQuestion
             x:350
             y:20
-            visible: true
+            visible: false
             text: "Выберите ваш пол:"
             font.pointSize: 40
         }
@@ -374,6 +528,88 @@ anchors.fill:parent
                 }
             }
         }
+        Text{
+            id:displayTextMenu
+            x:350
+            y:140
+            visible:true
+            text:"Пятифакторный тест\n          личности"
+            font.pointSize: 40
+
+        }
+
+        Rectangle{                                                                            //кнопка начала теста
+            id:buttonStart
+            x:480
+            y:180
+                color: if(buttonStartMouseArea.containsPress){
+                           return "Dark green";
+                    } else if(buttonStartMouseArea.containsMouse){
+                    return "light green";
+                         }
+                           else{
+                               return "White";
+                           }
+
+                width: 250
+                height: 100
+                Text{
+                    anchors.centerIn: parent
+                    text:"Начать тест"
+                }
+                MouseArea{
+                    id:buttonStartMouseArea
+                    anchors.fill:parent
+                    hoverEnabled: true
+                    onClicked: {
+                        displayTextMenu.visible=false;
+                        buttonStart.visible=false;
+
+                        buttonQuestionBack.text="Выйти из теста"
+                        userSexRow.visible=true;
+                        displayUserQuestion.visible=true;
+                        screenMenu=0;
+
+                        questionNum=0;  //Обнуление счёта
+                        score1=0;
+                        score11=0;
+                        score12=0;
+                        score13=0;
+                        score14=0;
+                        score15=0;
+
+                        score2=0;
+                        score21=0;
+                        score22=0;
+                        score23=0;
+                        score24=0;
+                        score25=0;
+
+                        score3=0;
+                        score31=0;
+                        score32=0;
+                        score33=0;
+                        score34=0;
+                        score35=0;
+
+                        score4=0;
+                        score41=0;
+                        score42=0;
+                        score43=0;
+                        score44=0;
+                        score45=0;
+
+                        score5=0;
+                        score51=0;
+                        score52=0;
+                        score53=0;
+                        score54=0;
+                        score55=0;
+
+                    }
+                }
+            }
+
 
         Text{                                                                                 //вывод вопроса на экран пользователя
             id: displayQuestion
@@ -1698,11 +1934,12 @@ anchors.fill:parent
     }
 }
     Row{
+        id: userSexRow
+        visible: false
         y:250
         x:300
         spacing: 200
         Rectangle{                                                                            //кнопка выбора мужского пола
-            visible: true
             id:buttonMale
                 color: if(buttonMaleMouseArea.containsPress){
                            return "DarkBlue";
@@ -1724,8 +1961,7 @@ anchors.fill:parent
                     anchors.fill:parent
                     hoverEnabled: true
                     onClicked: {
-                        buttonMale.visible=false;
-                        buttonFemale.visible=false;
+                        userSexRow.visible=false;
                         buttonRow.visible=true;
                         userSex=1;
                         buttonQuestionBack.text="Вернуться назад";
@@ -1738,7 +1974,6 @@ anchors.fill:parent
             }
 
         Rectangle{                                                                            //кнопка выбора женского пола
-            visible: true
             id:buttonFemale
                 color: if(buttonFemaleMouseArea.containsPress){
                            return "DarkRed";
@@ -1760,8 +1995,7 @@ anchors.fill:parent
                     anchors.fill:parent
                     hoverEnabled: true
                     onClicked: {
-                        buttonMale.visible=false;
-                        buttonFemale.visible=false;
+                        userSexRow.visible=false;
                         buttonRow.visible=true;
                         userSex=2;
                         buttonQuestionBack.text="Вернуться назад";
@@ -2024,8 +2258,14 @@ anchors.fill:parent
                     buttonAgreeCompletely.visible=false;
                     buttonAgreePartially.visible=false;
 
-                    database.updateTable(score1,score2,score3,score4,score5, 0);    //Изменение уже существующей записи
-                    database.insertIntoTable(score1,score2,score3,score4,score5);   //Добавление новой записи
+                   if(user_id)
+                   {
+                       database.updateTable(score1,score2,score3,score4,score5, user_id);  //Изменение уже существующей записи
+                   }
+                   else
+                   {
+                       database.insertIntoTable(score1,score2,score3,score4,score5);    //Добавить новую запись
+                   }
                 }
             }
         }

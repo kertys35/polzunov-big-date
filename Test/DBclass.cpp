@@ -60,11 +60,6 @@ bool DBclass::insertIntoTable(const QVariantList &data)
         return true;
     }
 }
-//Получить ID пользователя
-int DBclass::get_id()
-{
-    return true;
-}
 //Подготовка данных для вставки в БД
 bool DBclass::insertIntoTable(const QString &FirstResult, const QString &SecondResult, const QString &ThirdResult,
                               const QString &FourthResult, const QString &FifthResult)
@@ -90,7 +85,7 @@ bool DBclass::updateTable(const QVariantList &data, const int id)
     QSqlQuery query;
 
     //Формируем вставку в таблицу
-    query.prepare("Update \"UserName\" SET \"FirstResult\"=:FIRST_SCORE, \"SecondResult\"=:SECOND_SCORE,"
+    query.prepare( "Update \"UserName\" SET \"FirstResult\"=:FIRST_SCORE, \"SecondResult\"=:SECOND_SCORE,"
                   " \"ThirdResult\"=:THIRD_SCORE, \"FourthResult\"=:FOURTH_SCORE, \"FifthResult\"=:FIFTH_SCORE WHERE \"User_id\"=:ID;");
     //Привязываем значения, которые мы пытаемся вставить
     query.bindValue(":FIRST_SCORE", data[0]);
@@ -99,6 +94,7 @@ bool DBclass::updateTable(const QVariantList &data, const int id)
     query.bindValue(":FOURTH_SCORE", data[3]);
     query.bindValue(":FIFTH_SCORE", data[4]);
     query.bindValue(":ID", id);
+    query.bindValue(":id", id);
     //Выполняется вставка методом exec()
     if(!query.exec())
     {
@@ -127,16 +123,19 @@ bool DBclass::updateTable(const QString &FirstResult, const QString &SecondResul
     else
         return false;
 }
-//Удалениие записи из БД
-bool DBclass::removeRecord(const int id)
+
+bool DBclass::checkID(int id)
 {
     QSqlQuery query;
-    query.prepare("Delete from" TABLE "Where id=:ID;");
-    query.bindValue(":ID", id);
-    if(!query.exec())
-        return false;
-    else
+    query.bindValue(":id",id);
+    query.exec("Select count(\"User_id\") from \"UserName\" where \"User_id\"=:id");
+    int check=query.value(0).toInt();
+    if(check)
+    {
         return true;
-    return false;
+    }
+    else
+    {
+        return false;
+    }
 }
-
