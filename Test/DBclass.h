@@ -34,13 +34,18 @@ private:
     bool openDataBase();        //Открытие БД
     void closeDataBase();       //Закрытие БД
 public slots:
-    bool insertIntoTable(const QVariantList &data);
-    bool insertIntoTable(const QString &FirstResult, const QString &SecondResult, const QString &ThirdResult,
+    bool insertIntoTable(const QVariantList &data);                                                                             //Вставить значения тестов в БД
+    bool insertIntoTable(const QString &FirstResult, const QString &SecondResult, const QString &ThirdResult,                   //Подготовить массив данных для вставки в БД
                          const QString &FourthResult, const QString &FifthResult);
-    bool updateTable(const QVariantList &data, const int id);
-    bool updateTable(const QString &FirstResult, const QString &SecondResult, const QString &ThirdResult,
+    bool updateTable(const QVariantList &data, const int id);                                                                  //Изменить значения тестов в БД
+    bool updateTable(const QString &FirstResult, const QString &SecondResult, const QString &ThirdResult,                     //Подготовить массив данных, которые будут использоваться в БД
                      const QString &FourthResult, const QString &FifthResult, int id);
-    bool checkID(int id);
+    bool checkID(int id);                                                                                                    //Проверить, что существует запись с ID пользователя
+    int get_results1(int id);                                                                                                //Получить результат первого фактора теста
+    int get_results2(int id);                                                                                                //Получить результат второго фактора теста
+    int get_results3(int id);                                                                                                //Получить результат третьего фактора теста
+    int get_results4(int id);                                                                                                //Получить результат четвёртого фактора теста
+    int get_results5(int id);                                                                                                //Получить результат пятого фактора теста
 signals:
 
 private:

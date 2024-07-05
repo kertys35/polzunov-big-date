@@ -291,6 +291,7 @@ Window {
     property int user_id: 10;                                                              //Идентификатор пользователя
 
     property int screenMenu: 1;                                                           //Флаг меню польззователя
+    property int resultScreen:0;                                                          //Флаг окна результатов
 
     property int score1: 0;                                                                //Экстраверсия – интроверсия
     property int score11: 0;                                                               //Активность - пассивность
@@ -342,7 +343,7 @@ anchors.fill:parent
         spacing: 20
 
         Rectangle{                                                                            //кнопка вернуться назад на вопрос или выйти из теста
-            visible: true
+            visible: false
             id:questionBack
             Rectangle{
                 color: if(buttonQuestionBackMouseArea.containsPress){
@@ -385,51 +386,19 @@ anchors.fill:parent
                             screenMenu=0;
                         }
 
-                        else if((questionNum == 0 || testEnd) && screenMenu==0)                //Выйти из теста
+                        else if((questionNum == 0 || testEnd) && screenMenu==0 && resultScreen==0)                //Выйти из теста
                         {
                             userSexRow.visible=false;
-                            buttonQuestionBack.text="Выйти";
+
+                            questionBack.visible=false;
                             displayUserQuestion.visible=false;
+
 
                             screenMenu=1;
                             displayTextMenu.visible=true;
                             buttonStart.visible=true;
-
+                            buttonResult.visible=true;
                             displayResult.visible=false;                          //Скрытие результатов теста
-                            displayResults1.visible=false;
-                            displayResults11.visible=false;
-                            displayResults12.visible=false;
-                            displayResults13.visible=false;
-                            displayResults14.visible=false;
-                            displayResults15.visible=false;
-
-                            displayResults2.visible=false;
-                            displayResults21.visible=false;
-                            displayResults22.visible=false;
-                            displayResults23.visible=false;
-                            displayResults24.visible=false;
-                            displayResults25.visible=false;
-
-                            displayResults3.visible=false;
-                            displayResults31.visible=false;
-                            displayResults32.visible=false;
-                            displayResults33.visible=false;
-                            displayResults34.visible=false;
-                            displayResults35.visible=false;
-
-                            displayResults4.visible=false;
-                            displayResults41.visible=false;
-                            displayResults42.visible=false;
-                            displayResults43.visible=false;
-                            displayResults44.visible=false;
-                            displayResults45.visible=false;
-
-                            displayResults5.visible=false;
-                            displayResults51.visible=false;
-                            displayResults52.visible=false;
-                            displayResults53.visible=false;
-                            displayResults54.visible=false;
-                            displayResults55.visible=false;
 
                             graphScore1.visible=false;
                             graphScore11.visible=false;
@@ -473,9 +442,54 @@ anchors.fill:parent
                             displayExplanation4Row.visible=false;
                             displayExplanation5Row.visible=false;
                         }
-                        else
+                        else if(resultScreen)                       //Вернуться из экрана тестов
                         {
-                            testScreen.close();
+                            screenMenu=1;
+                            resultScreen=0;
+
+                            questionBack.visible=false;
+                            noResult.visible=false;
+
+                            buttonStart.visible=true;
+                            buttonResult.visible=true;
+                            displayTextMenu.visible=true;
+
+                            displayResult.visible=false;                          //Скрытие результатов теста
+
+                            graphScore1.visible=false;
+                            graphScore11.visible=false;
+                            graphScore12.visible=false;
+                            graphScore13.visible=false;
+                            graphScore14.visible=false;
+                            graphScore15.visible=false;
+
+                            graphScore2.visible=false;
+                            graphScore21.visible=false;
+                            graphScore22.visible=false;
+                            graphScore23.visible=false;
+                            graphScore24.visible=false;
+                            graphScore25.visible=false;
+
+                            graphScore3.visible=false;
+                            graphScore31.visible=false;
+                            graphScore32.visible=false;
+                            graphScore33.visible=false;
+                            graphScore34.visible=false;
+                            graphScore35.visible=false;
+
+                            graphScore4.visible=false;
+                            graphScore41.visible=false;
+                            graphScore42.visible=false;
+                            graphScore43.visible=false;
+                            graphScore44.visible=false;
+                            graphScore45.visible=false;
+
+                            graphScore5.visible=false;
+                            graphScore51.visible=false;
+                            graphScore52.visible=false;
+                            graphScore53.visible=false;
+                            graphScore54.visible=false;
+                            graphScore55.visible=false;
                         }
                     }
                 }
@@ -562,8 +576,10 @@ anchors.fill:parent
                     anchors.fill:parent
                     hoverEnabled: true
                     onClicked: {
+                        questionBack.visible=true;
                         displayTextMenu.visible=false;
                         buttonStart.visible=false;
+                        buttonResult.visible=false;
 
                         buttonQuestionBack.text="Выйти из теста"
                         userSexRow.visible=true;
@@ -610,6 +626,74 @@ anchors.fill:parent
                 }
             }
 
+        Text{                                                                                 //Текст при отсутствии результатов
+            id: noResult
+            x:350
+            y:80
+            visible:false
+            text: "Нет результатов теста."
+            font.pointSize: 20
+        }
+
+        Rectangle{                                                                            //кнопка просмотра результатов
+            id:buttonResult
+            x:480
+            y:180
+                color: if(buttonResultMouseArea.containsPress){
+                           return "Dark green";
+                    } else if(buttonResultMouseArea.containsMouse){
+                    return "light green";
+                         }
+                           else{
+                               return "White";
+                           }
+
+                width: 250
+                height: 100
+                Text{
+                    anchors.centerIn: parent
+                    text:"Результаты предыдущего теста"
+                }
+                MouseArea{
+                    id:buttonResultMouseArea
+                    anchors.fill:parent
+                    hoverEnabled: true
+                    onClicked: {
+                        resultScreen=1;
+                        questionBack.visible=true;
+                        displayTextMenu.visible=false;
+                        buttonStart.visible=false;
+                        buttonResult.visible=false;
+
+                        buttonQuestionBack.text="Выйти в меню"
+
+                        if(database.checkID(user_id))                           //Получить данные пользователя из БД
+                        {
+                            score1=database.get_results1(user_id);
+                            score2=database.get_results2(user_id);
+                            score3=database.get_results3(user_id);
+                            score4=database.get_results4(user_id);
+                            score5=database.get_results5(user_id);
+                        }
+                        if(score1 > 0 && score2 > 0 && score3 > 0 && score4 > 0 && score5 > 0)
+                        {
+                            displayResult.visible=true;                          //Отображение результатов теста
+
+                            graphScore1.visible=true;
+
+                            graphScore2.visible=true;
+
+                            graphScore3.visible=true;
+
+                            graphScore4.visible=true;
+
+                            graphScore5.visible=true;
+                        }
+                        else
+                            noResult.visible = true;                           //Отображение сообщения об отсутствии данных о результатах теста
+                    }
+                }
+            }
 
         Text{                                                                                 //вывод вопроса на экран пользователя
             id: displayQuestion
@@ -624,7 +708,7 @@ anchors.fill:parent
             x:350
             y:10
             visible: false
-            text: "Результат теста: "
+            text: "Результаты теста: "
             font.pointSize: 40
         }
 
@@ -638,7 +722,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults1
                  y: -10
-                visible: false
+                visible: true
                 text: "1. Экстраверсия – интроверсия: " + score1 +"/75"
                 font.pointSize: 20
             }
@@ -677,7 +761,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults11
                  y: -10
-                visible: false
+                visible: true
                 text: "1.1. Активность - пассивность: " + score11 +"/15"
                 font.pointSize: 15
             }
@@ -716,7 +800,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults12
                  y: -10
-                visible: false
+                visible: true
                 text: "1.2. Экстраверсия – интроверсия: " + score12 +"/15"
                 font.pointSize: 15
             }
@@ -755,7 +839,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults13
                  y: -10
-                visible: false
+                visible: true
                 text: "1.3. Экстраверсия – интроверсия: " + score13+"/15"
                 font.pointSize: 15
             }
@@ -794,7 +878,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults14
                  y: -10
-                visible: false
+                visible: true
                 text: "1.4. Экстраверсия – интроверсия: " + score14 +"/15"
                 font.pointSize: 15
             }
@@ -833,7 +917,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults15
                  y: -10
-                visible: false
+                visible: true
                 text: "1.5. Экстраверсия – интроверсия: " + score15 +"/15"
                 font.pointSize: 15
             }
@@ -879,7 +963,7 @@ anchors.fill:parent
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults2
-                visible: false
+                visible: true
                 y:-10
                 text: "2. Привязанность – обособленность: " +score2 +"/75"
                 font.pointSize: 20
@@ -919,7 +1003,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults21
                  y: -10
-                visible: false
+                visible: true
                 text: "2.1. Теплота - равнодушие: " + score21 +"/15"
                 font.pointSize: 15
             }
@@ -958,7 +1042,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults22
                  y: -10
-                visible: false
+                visible: true
                 text: "2.2. Сотрудничество - соперничество: " + score22 +"/15"
                 font.pointSize: 15
             }
@@ -997,7 +1081,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults23
                  y: -10
-                visible: false
+                visible: true
                 text: "2.3. Доверчивость - подозрительность: " + score23+"/15"
                 font.pointSize: 15
             }
@@ -1036,7 +1120,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults24
                  y: -10
-                visible: false
+                visible: true
                 text: "2.4. Понимание - непонимание: " + score24 +"/15"
                 font.pointSize: 15
             }
@@ -1075,7 +1159,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults25
                  y: -10
-                visible: false
+                visible: true
                 text: "2.5. Уважение других - самоуважение: " + score25 +"/15"
                 font.pointSize: 15
             }
@@ -1121,7 +1205,7 @@ anchors.fill:parent
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults3
-                visible: false
+                visible: true
                 y:-10
                 text: "3. Самоконтроль – импульсивность: " +score3 +"/75"
                 font.pointSize: 20
@@ -1161,7 +1245,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults31
                  y: -10
-                visible: false
+                visible: true
                 text: "3.1. Аккуратность - неаккуратность: " + score31 +"/15"
                 font.pointSize: 15
             }
@@ -1200,7 +1284,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults32
                  y: -10
-                visible: false
+                visible: true
                 text: "3.2. Настойчивость - слабоволие: " + score32 +"/15"
                 font.pointSize: 15
             }
@@ -1239,7 +1323,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults33
                  y: -10
-                visible: false
+                visible: true
                 text: "3.3. Ответственность - безответственность: " + score33+"/15"
                 font.pointSize: 15
             }
@@ -1278,7 +1362,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults34
                  y: -10
-                visible: false
+                visible: true
                 text: "3.4. Самоконтроль - импульсивность: " + score34 +"/15"
                 font.pointSize: 15
             }
@@ -1317,7 +1401,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults35
                  y: -10
-                visible: false
+                visible: true
                 text: "3.5. Предусмотрительность - беспечность: " + score35 +"/15"
                 font.pointSize: 15
             }
@@ -1363,7 +1447,7 @@ anchors.fill:parent
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults4
-                visible: false
+                visible: true
                 y:-10
                 text: "4. Эмоциональная устойчивость - неустойчивость: " +score4 +"/75"
                 font.pointSize: 20
@@ -1403,7 +1487,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults41
                  y: -10
-                visible: false
+                visible: true
                 text: "4.1. Тревожность - беззаботность: " + score41 +"/15"
                 font.pointSize: 15
             }
@@ -1442,7 +1526,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults42
                  y: -10
-                visible: false
+                visible: true
                 text: "4.2. Напряженность - расслабленность: " + score42 +"/15"
                 font.pointSize: 15
             }
@@ -1481,7 +1565,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults43
                  y: -10
-                visible: false
+                visible: true
                 text: "4.3. Депрессивность - эмоциональная комфортность: " + score43+"/15"
                 font.pointSize: 15
             }
@@ -1520,7 +1604,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults44
                  y: -10
-                visible: false
+                visible: true
                 text: "4.4. Самокритика - самодостаточность: " + score44 +"/15"
                 font.pointSize: 15
             }
@@ -1559,7 +1643,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults45
                  y: -10
-                visible: false
+                visible: true
                 text: "4.5. Эмоциональная лабильность - эмоциональная стабильность: " + score45 +"/15"
                 font.pointSize: 15
             }
@@ -1605,7 +1689,7 @@ anchors.fill:parent
             x:300
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults5
-                visible: false
+                visible: true
                 y:-10
                 text: "5. Экспрессивность – практичность: " +score5 +"/75 "
                 font.pointSize: 20
@@ -1645,7 +1729,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults51
                  y: -10
-                visible: false
+                visible: true
                 text: "5.1. Любопытство - консерватизм: " + score51 +"/15"
                 font.pointSize: 15
             }
@@ -1684,7 +1768,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults52
                  y: -10
-                visible: false
+                visible: true
                 text: "5.2. Мечтательность - реалистичность: " + score52 +"/15"
                 font.pointSize: 15
             }
@@ -1723,7 +1807,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults53
                  y: -10
-                visible: false
+                visible: true
                 text: "5.3. Артистичность - неартистичность: " + score53+"/15"
                 font.pointSize: 15
             }
@@ -1762,7 +1846,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults54
                  y: -10
-                visible: false
+                visible: true
                 text: "5.4. Сензитивность - нечувствительность: " + score54 +"/15"
                 font.pointSize: 15
             }
@@ -1801,7 +1885,7 @@ anchors.fill:parent
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults55
                  y: -10
-                visible: false
+                visible: true
                 text: "5.5. Пластичность - ригидность: " + score55 +"/15"
                 font.pointSize: 15
             }
@@ -2170,40 +2254,6 @@ anchors.fill:parent
                     score5+=score51 + score52 + score53 + score54 + score55
 
                     displayResult.visible=true;                          //Вывод результатов теста
-                    displayResults1.visible=true;
-                    displayResults11.visible=true;
-                    displayResults12.visible=true;
-                    displayResults13.visible=true;
-                    displayResults14.visible=true;
-                    displayResults15.visible=true;
-
-                    displayResults2.visible=true;
-                    displayResults21.visible=true;
-                    displayResults22.visible=true;
-                    displayResults23.visible=true;
-                    displayResults24.visible=true;
-                    displayResults25.visible=true;
-
-                    displayResults3.visible=true;
-                    displayResults31.visible=true;
-                    displayResults32.visible=true;
-                    displayResults33.visible=true;
-                    displayResults34.visible=true;
-                    displayResults35.visible=true;
-
-                    displayResults4.visible=true;
-                    displayResults41.visible=true;
-                    displayResults42.visible=true;
-                    displayResults43.visible=true;
-                    displayResults44.visible=true;
-                    displayResults45.visible=true;
-
-                    displayResults5.visible=true;
-                    displayResults51.visible=true;
-                    displayResults52.visible=true;
-                    displayResults53.visible=true;
-                    displayResults54.visible=true;
-                    displayResults55.visible=true;
 
                     graphScore1.visible=true;
                     graphScore11.visible=true;
@@ -2258,7 +2308,7 @@ anchors.fill:parent
                     buttonAgreeCompletely.visible=false;
                     buttonAgreePartially.visible=false;
 
-                   if(user_id)
+                   if(database.checkID(user_id))                                       //Проверить, существует ли ID пользователя в БД
                    {
                        database.updateTable(score1,score2,score3,score4,score5, user_id);  //Изменение уже существующей записи
                    }
@@ -2422,40 +2472,7 @@ anchors.fill:parent
                     score5+=score51 + score52 + score53 + score54 + score55
 
                     displayResult.visible=true;                          //Вывод результатов теста
-                    displayResults1.visible=true;
-                    displayResults11.visible=true;
-                    displayResults12.visible=true;
-                    displayResults13.visible=true;
-                    displayResults14.visible=true;
-                    displayResults15.visible=true;
 
-                    displayResults2.visible=true;
-                    displayResults21.visible=true;
-                    displayResults22.visible=true;
-                    displayResults23.visible=true;
-                    displayResults24.visible=true;
-                    displayResults25.visible=true;
-
-                    displayResults3.visible=true;
-                    displayResults31.visible=true;
-                    displayResults32.visible=true;
-                    displayResults33.visible=true;
-                    displayResults34.visible=true;
-                    displayResults35.visible=true;
-
-                    displayResults4.visible=true;
-                    displayResults41.visible=true;
-                    displayResults42.visible=true;
-                    displayResults43.visible=true;
-                    displayResults44.visible=true;
-                    displayResults45.visible=true;
-
-                    displayResults5.visible=true;
-                    displayResults51.visible=true;
-                    displayResults52.visible=true;
-                    displayResults53.visible=true;
-                    displayResults54.visible=true;
-                    displayResults55.visible=true;
 
                     graphScore1.visible=true;
                     graphScore11.visible=true;
@@ -2510,6 +2527,14 @@ anchors.fill:parent
                     buttonAgreeCompletely.visible=false;
                     buttonAgreePartially.visible=false;
 
+                    if(database.checkID(user_id))                                       //Проверить, существует ли ID пользователя в БД
+                    {
+                        database.updateTable(score1,score2,score3,score4,score5, user_id);  //Изменение уже существующей записи
+                    }
+                    else
+                    {
+                        database.insertIntoTable(score1,score2,score3,score4,score5);    //Добавить новую запись
+                    }
                 }
             }
         }
@@ -2666,40 +2691,6 @@ anchors.fill:parent
                     score5+=score51 + score52 + score53 + score54 + score55
 
                     displayResult.visible=true;                          //Вывод результатов теста
-                    displayResults1.visible=true;
-                    displayResults11.visible=true;
-                    displayResults12.visible=true;
-                    displayResults13.visible=true;
-                    displayResults14.visible=true;
-                    displayResults15.visible=true;
-
-                    displayResults2.visible=true;
-                    displayResults21.visible=true;
-                    displayResults22.visible=true;
-                    displayResults23.visible=true;
-                    displayResults24.visible=true;
-                    displayResults25.visible=true;
-
-                    displayResults3.visible=true;
-                    displayResults31.visible=true;
-                    displayResults32.visible=true;
-                    displayResults33.visible=true;
-                    displayResults34.visible=true;
-                    displayResults35.visible=true;
-
-                    displayResults4.visible=true;
-                    displayResults41.visible=true;
-                    displayResults42.visible=true;
-                    displayResults43.visible=true;
-                    displayResults44.visible=true;
-                    displayResults45.visible=true;
-
-                    displayResults5.visible=true;
-                    displayResults51.visible=true;
-                    displayResults52.visible=true;
-                    displayResults53.visible=true;
-                    displayResults54.visible=true;
-                    displayResults55.visible=true;
 
                     graphScore1.visible=true;
                     graphScore11.visible=true;
@@ -2753,6 +2744,15 @@ anchors.fill:parent
                     buttonUncertain.visible=false;
                     buttonAgreeCompletely.visible=false;
                     buttonAgreePartially.visible=false;
+
+                    if(database.checkID(user_id))                                       //Проверить, существует ли ID пользователя в БД
+                    {
+                        database.updateTable(score1,score2,score3,score4,score5, user_id);  //Изменение уже существующей записи
+                    }
+                    else
+                    {
+                        database.insertIntoTable(score1,score2,score3,score4,score5);    //Добавить новую запись
+                    }
                 }
             }
         }
@@ -2910,40 +2910,6 @@ anchors.fill:parent
                     score5+=score51 + score52 + score53 + score54 + score55
 
                     displayResult.visible=true;                          //Вывод результатов теста
-                    displayResults1.visible=true;
-                    displayResults11.visible=true;
-                    displayResults12.visible=true;
-                    displayResults13.visible=true;
-                    displayResults14.visible=true;
-                    displayResults15.visible=true;
-
-                    displayResults2.visible=true;
-                    displayResults21.visible=true;
-                    displayResults22.visible=true;
-                    displayResults23.visible=true;
-                    displayResults24.visible=true;
-                    displayResults25.visible=true;
-
-                    displayResults3.visible=true;
-                    displayResults31.visible=true;
-                    displayResults32.visible=true;
-                    displayResults33.visible=true;
-                    displayResults34.visible=true;
-                    displayResults35.visible=true;
-
-                    displayResults4.visible=true;
-                    displayResults41.visible=true;
-                    displayResults42.visible=true;
-                    displayResults43.visible=true;
-                    displayResults44.visible=true;
-                    displayResults45.visible=true;
-
-                    displayResults5.visible=true;
-                    displayResults51.visible=true;
-                    displayResults52.visible=true;
-                    displayResults53.visible=true;
-                    displayResults54.visible=true;
-                    displayResults55.visible=true;
 
                     graphScore1.visible=true;
                     graphScore11.visible=true;
@@ -2997,6 +2963,15 @@ anchors.fill:parent
                     buttonUncertain.visible=false;
                     buttonAgreeCompletely.visible=false;
                     buttonAgreePartially.visible=false;
+
+                   if(database.checkID(user_id))                                       //Проверить, существует ли ID пользователя в БД
+                    {
+                        database.updateTable(score1,score2,score3,score4,score5, user_id);  //Изменение уже существующей записи
+                    }
+                    else
+                    {
+                        database.insertIntoTable(score1,score2,score3,score4,score5);    //Добавить новую запись
+                    }
                 }
             }
         }
@@ -3153,40 +3128,6 @@ anchors.fill:parent
                     score5+=score51 + score52 + score53 + score54 + score55
 
                     displayResult.visible=true;                          //Вывод результатов теста
-                    displayResults1.visible=true;
-                    displayResults11.visible=true;
-                    displayResults12.visible=true;
-                    displayResults13.visible=true;
-                    displayResults14.visible=true;
-                    displayResults15.visible=true;
-
-                    displayResults2.visible=true;
-                    displayResults21.visible=true;
-                    displayResults22.visible=true;
-                    displayResults23.visible=true;
-                    displayResults24.visible=true;
-                    displayResults25.visible=true;
-
-                    displayResults3.visible=true;
-                    displayResults31.visible=true;
-                    displayResults32.visible=true;
-                    displayResults33.visible=true;
-                    displayResults34.visible=true;
-                    displayResults35.visible=true;
-
-                    displayResults4.visible=true;
-                    displayResults41.visible=true;
-                    displayResults42.visible=true;
-                    displayResults43.visible=true;
-                    displayResults44.visible=true;
-                    displayResults45.visible=true;
-
-                    displayResults5.visible=true;
-                    displayResults51.visible=true;
-                    displayResults52.visible=true;
-                    displayResults53.visible=true;
-                    displayResults54.visible=true;
-                    displayResults55.visible=true;
 
                     graphScore1.visible=true;
                     graphScore11.visible=true;
@@ -3240,6 +3181,15 @@ anchors.fill:parent
                     buttonUncertain.visible=false;
                     buttonAgreeCompletely.visible=false;
                     buttonAgreePartially.visible=false;
+
+                    if(database.checkID(user_id))                                       //Проверить, существует ли ID пользователя в БД
+                    {
+                        database.updateTable(score1,score2,score3,score4,score5, user_id);  //Изменение уже существующей записи
+                    }
+                    else
+                    {
+                        database.insertIntoTable(score1,score2,score3,score4,score5);    //Добавить новую запись
+                    }
                 }
             }
         }
