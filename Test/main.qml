@@ -24,7 +24,7 @@ Window {
         "Я тактичен по отношения к  другим людям",
         "Я методичен и пунктуален во всем",
         "Мои чувства легко уязвимы и ранимы",
-        "Мне не интересно, когда ответ ясен заранее",                       //15 вопросов
+        "Мне не интересно, когда ответ ясен заранее",                        //15 вопросов
         "Я люблю, чтобы другие быстро выполняли мои распоряжения",
         "Я уступчивый и склонный к компромиссам человек",
         "Я проявляю настойчивость, решая трудную задачу",
@@ -85,6 +85,7 @@ Window {
         "Я точно и методично выполняю свою работу",
         "Иногда я бываю настолько взволнован, что даже плачу",
         "Иногда я чувствую, что могу открыть в себе нечто новое"
+
 
     ];
     property variant resultExplanation: [                                                           //Объяснение результата
@@ -328,7 +329,14 @@ Window {
     property int score54: 0;                                                               //Сензитивность - нечувствительность
     property int score55: 0;                                                               //Пластичность - ригидность
 
-    property int userSex: 0;                                                            //Пол человека, проходящего тест
+    property int lastValue: 0;                                                            //Последнее добавленное значение к счету
+    property int lastScore: 0;                                                            //Последний измененнный фактор в тесте
+    property int lastSubScore: 0;                                                            //Последний измененнный дополнительный фактор в тесте
+
+    property variant questionValue:[];                                                                 //Массив с результатами ответов
+    property variant questionScore:[];                                                              //Массив с основным факторами, которые были увеличены из-за ответов
+    property variant questionSubScore:[];                                                           //Массив с дополнительными факторами, которые были увеличены из-за ответов
+
     property int testEnd: 0;                                                            //Флаг окончания теста
 
 
@@ -369,36 +377,149 @@ anchors.fill:parent
                     onClicked: {
                         if(questionNum > 0 && testEnd==0)       //Вернуться на вопрос назад
                         {
+                            if(questionNum==1)
+                                buttonQuestionBack.text="Выйти из теста";
+                            if(questionNum >= 1)
+                            {
+                                lastValue=questionValue.pop();
+                                lastSubScore=questionSubScore.pop();
+                                lastScore=questionScore.pop();
+                                switch(lastScore)                                   //Вычитает баллы за прошлый вопрос
+                                {
+                                case 1:
+                                    switch(lastSubScore)
+                                    {
+                                    case 1:
+                                        score11-=lastValue;
+                                        break;
+                                    case 2:
+                                        score12-=lastValue
+                                        break;
+                                    case 3:
+                                        score13-=lastValue
+                                        break;
+                                    case 4:
+                                        score14-=lastValue
+                                        break;
+                                    case 5:
+                                        score15-=lastValue
+                                        break;
+                                    default:
+                                        break;
+                                    }
+
+                                    break;
+                                case 2:
+                                    switch(lastSubScore)
+                                    {
+                                    case 1:
+                                        score21-=lastValue;
+                                        break;
+                                    case 2:
+                                        score22-=lastValue
+                                        break;
+                                    case 3:
+                                        score23-=lastValue
+                                        break;
+                                    case 4:
+                                        score24-=lastValue
+                                        break;
+                                    case 5:
+                                        score25-=lastValue
+                                        break;
+                                    default:
+                                        break;
+                                    }
+                                    break;
+                                case 3:
+                                    switch(lastSubScore)
+                                    {
+                                    case 1:
+                                        score31-=lastValue;
+                                        break;
+                                    case 2:
+                                        score32-=lastValue
+                                        break;
+                                    case 3:
+                                        score33-=lastValue
+                                        break;
+                                    case 4:
+                                        score34-=lastValue
+                                        break;
+                                    case 5:
+                                        score35-=lastValue
+                                        break;
+                                    default:
+                                        break;
+                                    }
+                                    break;
+                                case 4:
+                                    switch(lastSubScore)
+                                    {
+                                    case 1:
+                                        score41-=lastValue;
+                                        break;
+                                    case 2:
+                                        score42-=lastValue
+                                        break;
+                                    case 3:
+                                        score43-=lastValue
+                                        break;
+                                    case 4:
+                                        score44-=lastValue
+                                        break;
+                                    case 5:
+                                        score45-=lastValue
+                                        break;
+                                    default:
+                                        break;
+                                    }
+                                    break;
+                                case 5:
+                                    switch(lastSubScore)
+                                    {
+                                    case 1:
+                                        score51-=lastValue;
+                                        break;
+                                    case 2:
+                                        score52-=lastValue
+                                        break;
+                                    case 3:
+                                        score53-=lastValue
+                                        break;
+                                    case 4:
+                                        score54-=lastValue
+                                        break;
+                                    case 5:
+                                        score55-=lastValue
+                                        break;
+                                    default:
+                                        break;
+                                    }
+                                    break;
+
+                                default:
+                                    break;
+                                }
+                            }
                             questionNum--;
-                        }
-                        else if(userSex > 0 && questionNum == 0)                                             //Вернуться на экран выбора пола
-                        {
-                            userSex=0;
-                            userSexRow.visible=true;
-                            buttonQuestionBack.text="Выйти из теста";
-
-                            buttonRow.visible=false;
-                            displayUserQuestion.visible=true;
-                            displayQuestion.visible=false;
-                            displayQuestionNum.visible=false;
-                            graphQuestionNum.visible=false;
-
-                            screenMenu=0;
                         }
 
                         else if((questionNum == 0 || testEnd) && screenMenu==0 && resultScreen==0)                //Выйти из теста
                         {
-                            userSexRow.visible=false;
-
+                            testEnd=0;
                             questionBack.visible=false;
-                            displayUserQuestion.visible=false;
-
-
                             screenMenu=1;
                             displayTextMenu.visible=true;
                             buttonStart.visible=true;
                             buttonResult.visible=true;
                             displayResult.visible=false;                          //Скрытие результатов теста
+
+                            displayQuestion.visible=false;
+                            graphQuestionNum.visible=false;
+                            buttonRow.visible=false;
+
+
 
                             graphScore1.visible=false;
                             graphScore11.visible=false;
@@ -496,14 +617,6 @@ anchors.fill:parent
             }
         }
 
-        Text{                                                                                  //вывод вопроса про пол пользователя экран пользователя
-            id: displayUserQuestion
-            x:350
-            y:20
-            visible: false
-            text: "Выберите ваш пол:"
-            font.pointSize: 40
-        }
         Row{                                                                            //Вывод  информации о вопросах теста
             id: graphQuestionNum
             Layout.fillHeight: true
@@ -581,9 +694,14 @@ anchors.fill:parent
                         buttonStart.visible=false;
                         buttonResult.visible=false;
 
+
+                        displayQuestion.visible=true;
+                        displayQuestionNum.visible=true;
+                        graphQuestionNum.visible=true;
+
+                        buttonRow.visible=true;
+
                         buttonQuestionBack.text="Выйти из теста"
-                        userSexRow.visible=true;
-                        displayUserQuestion.visible=true;
                         screenMenu=0;
 
                         questionNum=0;  //Обнуление счёта
@@ -622,6 +740,10 @@ anchors.fill:parent
                         score54=0;
                         score55=0;
 
+                        lastValue=0;
+                        lastSubScore=0;
+                        lastScore=0;
+
                     }
                 }
             }
@@ -652,7 +774,7 @@ anchors.fill:parent
                 height: 100
                 Text{
                     anchors.centerIn: parent
-                    text:"Результаты предыдущего теста"
+                    text:"Результаты теста"
                 }
                 MouseArea{
                     id:buttonResultMouseArea
@@ -2017,81 +2139,6 @@ anchors.fill:parent
         }
     }
 }
-    Row{
-        id: userSexRow
-        visible: false
-        y:250
-        x:300
-        spacing: 200
-        Rectangle{                                                                            //кнопка выбора мужского пола
-            id:buttonMale
-                color: if(buttonMaleMouseArea.containsPress){
-                           return "DarkBlue";
-                    } else if(buttonMaleMouseArea.containsMouse){
-                    return "Blue";
-                         }
-                           else{
-                               return "White";
-                           }
-
-                width: 150
-                height: 75
-                Text{
-                    anchors.centerIn: parent
-                    text:"Мужчина"
-                }
-                MouseArea{
-                    id:buttonMaleMouseArea
-                    anchors.fill:parent
-                    hoverEnabled: true
-                    onClicked: {
-                        userSexRow.visible=false;
-                        buttonRow.visible=true;
-                        userSex=1;
-                        buttonQuestionBack.text="Вернуться назад";
-                        displayUserQuestion.visible=false;
-                        displayQuestion.visible=true;
-                        displayQuestionNum.visible=true;
-                        graphQuestionNum.visible=true;
-                    }
-                }
-            }
-
-        Rectangle{                                                                            //кнопка выбора женского пола
-            id:buttonFemale
-                color: if(buttonFemaleMouseArea.containsPress){
-                           return "DarkRed";
-                    } else if(buttonFemaleMouseArea.containsMouse){
-                    return "Red";
-                         }
-                           else{
-                               return "White";
-                           }
-
-                width: 150
-                height: 75
-                Text{
-                    anchors.centerIn: parent
-                    text:"Женщина"
-                }
-                MouseArea{
-                    id:buttonFemaleMouseArea
-                    anchors.fill:parent
-                    hoverEnabled: true
-                    onClicked: {
-                        userSexRow.visible=false;
-                        buttonRow.visible=true;
-                        userSex=2;
-                        buttonQuestionBack.text="Вернуться назад";
-                        displayUserQuestion.visible=false;
-                        displayQuestion.visible=true;
-                        displayQuestionNum.visible=true;
-                        graphQuestionNum.visible=true;
-                    }
-                }
-            }
-
-    }
 
 
 
@@ -2125,24 +2172,31 @@ anchors.fill:parent
             hoverEnabled: true
             onClicked: {
                 console.log("Ответ нажат 1");
+                lastValue=5;
                 if((questionNum+1)<=15)
                 {
+                    lastSubScore=1;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
                         score51+=5;
+                        lastScore=5;
                         break;
                     case 1:
                         score11+=5;
+                        lastScore=1;
                         break;
                     case 2:
                         score21+=5;
+                        lastScore=2;
                         break;
                     case 3:
                         score31+=5;
+                        lastScore=3;
                         break;
                     case 4:
                         score41+=5;
+                        lastScore=4;
                         break;
                     default:
                         break;
@@ -2150,22 +2204,28 @@ anchors.fill:parent
                 }
                 if((questionNum+1) > 15 && (questionNum+1) <= 30)
                 {
+                    lastSubScore=2;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
                         score52+=5;
+                        lastScore=5;
                         break;
                     case 1:
                         score12+=5;
+                        lastScore=1;
                         break;
                     case 2:
                         score22+=5;
+                        lastScore=2;
                         break;
                     case 3:
                         score32+=5;
+                        lastScore=3;
                         break;
                     case 4:
                         score42+=5;
+                        lastScore=4;
                         break;
                     default:
                         break;
@@ -2173,22 +2233,28 @@ anchors.fill:parent
                 }
                 if((questionNum+1) > 30 && (questionNum+1) <= 45)
                 {
+                    lastSubScore=3;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
                         score53+=5;
+                        lastScore=5;
                         break;
                     case 1:
                         score13+=5;
+                        lastScore=1;
                         break;
                     case 2:
                         score23+=5;
+                        lastScore=2;
                         break;
                     case 3:
                         score33+=5;
+                        lastScore=3;
                         break;
                     case 4:
                         score43+=5;
+                        lastScore=4;
                         break;
                     default:
                         break;
@@ -2196,22 +2262,28 @@ anchors.fill:parent
                 }
                 if((questionNum+1) > 45 && (questionNum+1) <= 60)
                 {
+                    lastSubScore=4;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
                         score54+=5;
+                        lastScore=5;
                         break;
                     case 1:
                         score14+=5;
+                        lastScore=1;
                         break;
                     case 2:
                         score24+=5;
+                        lastScore=2;
                         break;
                     case 3:
                         score34+=5;
+                        lastScore=3;
                         break;
                     case 4:
                         score44+=5;
+                        lastScore=4;
                         break;
                     default:
                         break;
@@ -2219,30 +2291,41 @@ anchors.fill:parent
                 }
                 if((questionNum+1) > 60 && (questionNum+1) <= 75)
                 {
+                    lastSubScore=5;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
                         score55+=5;
+                        lastScore=5;
                         break;
                     case 1:
                         score15+=5;
+                        lastScore=1;
                         break;
                     case 2:
                         score25+=5;
+                        lastScore=2;
                         break;
                     case 3:
                         score35+=5;
+                        lastScore=3;
                         break;
                     case 4:
                         score45+=5;
+                        lastScore=4;
                         break;
                     default:
                         break;
                     }
+
                 }
+                questionScore.push(lastScore);
+                questionSubScore.push(lastSubScore);
+                questionValue.push(lastValue);
                 if(questionNum<questionsString.length-1)
                 {
                       questionNum++;
+                      buttonQuestionBack.text="Вернуться назад";
                 }
                 else
                 {
@@ -2302,11 +2385,8 @@ anchors.fill:parent
                     graphQuestionNum.visible=false;
                     buttonQuestionBack.text="Выйти из теста";
                     testEnd=1;
-                    buttonDisagreeCompletely.visible=false;
-                    buttonDisagreePartially.visible=false;
-                    buttonUncertain.visible=false;
-                    buttonAgreeCompletely.visible=false;
-                    buttonAgreePartially.visible=false;
+                    buttonRow.visible=false;
+
 
                    if(database.checkID(user_id))                                       //Проверить, существует ли ID пользователя в БД
                    {
@@ -2343,24 +2423,31 @@ anchors.fill:parent
             hoverEnabled: true
             onClicked: {
                 console.log("Ответ нажат 2");
+                lastValue=4;
                 if((questionNum+1)<=15)
                 {
+                    lastSubScore=1;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
                         score51+=4;
+                        lastScore=5;
                         break;
                     case 1:
                         score11+=4;
+                        lastScore=1;
                         break;
                     case 2:
                         score21+=4;
+                        lastScore=2;
                         break;
                     case 3:
                         score31+=4;
+                        lastScore=3;
                         break;
                     case 4:
                         score41+=4;
+                        lastScore=4;
                         break;
                     default:
                         break;
@@ -2368,22 +2455,28 @@ anchors.fill:parent
                 }
                 if((questionNum+1) > 15 && (questionNum+1) <= 30)
                 {
+                    lastScore=2;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
                         score52+=4;
+                        lastScore=5;
                         break;
                     case 1:
                         score12+=4;
+                        lastScore=1;
                         break;
                     case 2:
                         score22+=4;
+                        lastScore=2;
                         break;
                     case 3:
                         score32+=4;
+                        lastScore=3;
                         break;
                     case 4:
                         score42+=4;
+                        lastScore=4;
                         break;
                     default:
                         break;
@@ -2391,22 +2484,28 @@ anchors.fill:parent
                 }
                 if((questionNum+1) > 30 && (questionNum+1) <= 45)
                 {
+                    lastScore=3;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
                         score53+=4;
+                        lastScore=5;
                         break;
                     case 1:
                         score13+=4;
+                        lastScore=1;
                         break;
                     case 2:
                         score23+=4;
+                        lastScore=2;
                         break;
                     case 3:
                         score33+=4;
+                        lastScore=3;
                         break;
                     case 4:
                         score43+=4;
+                        lastScore=4;
                         break;
                     default:
                         break;
@@ -2414,22 +2513,28 @@ anchors.fill:parent
                 }
                 if((questionNum+1) > 45 && (questionNum+1) <= 60)
                 {
+                    lastScore=4;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
                         score54+=4;
+                        lastScore=5;
                         break;
                     case 1:
                         score14+=4;
+                        lastScore=1;
                         break;
                     case 2:
                         score24+=4;
+                        lastScore=2;
                         break;
                     case 3:
                         score34+=4;
+                        lastScore=3;
                         break;
                     case 4:
                         score44+=4;
+                        lastScore=4;
                         break;
                     default:
                         break;
@@ -2437,30 +2542,40 @@ anchors.fill:parent
                 }
                 if((questionNum+1) > 60 && (questionNum+1) <= 75)
                 {
+                    lastScore=5;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
                         score55+=4;
+                        lastScore=5;
                         break;
                     case 1:
                         score15+=4;
+                        lastScore=1;
                         break;
                     case 2:
                         score25+=4;
+                        lastScore=2;
                         break;
                     case 3:
                         score35+=4;
+                        lastScore=3;
                         break;
                     case 4:
                         score45+=4;
+                        lastScore=4;
                         break;
                     default:
                         break;
                     }
                 }
+                questionScore.push(lastScore);
+                questionSubScore.push(lastSubScore);
+                questionValue.push(lastValue);
                 if(questionNum<questionsString.length-1)
                    {
                          questionNum++;
+                        buttonQuestionBack.text="Вернуться назад";
                    }
                 else
                 {
@@ -2521,11 +2636,7 @@ anchors.fill:parent
                     graphQuestionNum.visible=false;
                     buttonQuestionBack.text="Выйти из теста";
                     testEnd=1;
-                    buttonDisagreeCompletely.visible=false;
-                    buttonDisagreePartially.visible=false;
-                    buttonUncertain.visible=false;
-                    buttonAgreeCompletely.visible=false;
-                    buttonAgreePartially.visible=false;
+                    buttonRow.visible=false;
 
                     if(database.checkID(user_id))                                       //Проверить, существует ли ID пользователя в БД
                     {
@@ -2562,24 +2673,31 @@ anchors.fill:parent
             hoverEnabled: true
             onClicked: {
                 console.log("Ответ нажат 3");
+                lastValue=3;
                 if((questionNum+1)<=15)
                 {
+                    lastSubScore=1;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
                         score51+=3;
+                        lastScore=5;
                         break;
                     case 1:
                         score11+=3;
+                        lastScore=1;
                         break;
                     case 2:
                         score21+=3;
+                        lastScore=2;
                         break;
                     case 3:
                         score31+=3;
+                        lastScore=3;
                         break;
                     case 4:
                         score41+=3;
+                        lastScore=4;
                         break;
                     default:
                         break;
@@ -2587,22 +2705,28 @@ anchors.fill:parent
                 }
                 if((questionNum+1) > 15 && (questionNum+1) <= 30)
                 {
+                    lastSubScore=2;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
                         score52+=3;
+                        lastScore=5;
                         break;
                     case 1:
                         score12+=3;
+                        lastScore=1;
                         break;
                     case 2:
                         score22+=3;
+                        lastScore=2;
                         break;
                     case 3:
                         score32+=3;
+                        lastScore=3;
                         break;
                     case 4:
                         score42+=3;
+                        lastScore=4;
                         break;
                     default:
                         break;
@@ -2610,22 +2734,28 @@ anchors.fill:parent
                 }
                 if((questionNum+1) > 30 && (questionNum+1) <= 45)
                 {
+                    lastSubScore=3;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
                         score53+=3;
+                        lastScore=5;
                         break;
                     case 1:
                         score13+=3;
+                        lastScore=1;
                         break;
                     case 2:
                         score23+=3;
+                        lastScore=2;
                         break;
                     case 3:
                         score33+=3;
+                        lastScore=3;
                         break;
                     case 4:
                         score43+=3;
+                        lastScore=4;
                         break;
                     default:
                         break;
@@ -2633,22 +2763,28 @@ anchors.fill:parent
                 }
                 if((questionNum+1) > 45 && (questionNum+1) <= 60)
                 {
+                    lastSubScore=4;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
                         score54+=3;
+                        lastScore=5;
                         break;
                     case 1:
                         score14+=3;
+                        lastScore=1;
                         break;
                     case 2:
                         score24+=3;
+                        lastScore=2;
                         break;
                     case 3:
                         score34+=3;
+                        lastScore=3;
                         break;
                     case 4:
                         score44+=3;
+                        lastScore=4;
                         break;
                     default:
                         break;
@@ -2656,30 +2792,40 @@ anchors.fill:parent
                 }
                 if((questionNum+1) > 60 && (questionNum+1) <= 75)
                 {
+                    lastSubScore=5;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
                         score55+=3;
+                        lastScore=5;
                         break;
                     case 1:
                         score15+=3;
+                        lastScore=1;
                         break;
                     case 2:
                         score25+=3;
+                        lastScore=2;
                         break;
                     case 3:
                         score35+=3;
+                        lastScore=3;
                         break;
                     case 4:
                         score45+=3;
+                        lastScore=4;
                         break;
                     default:
                         break;
                     }
                 }
+                questionScore.push(lastScore);
+                questionSubScore.push(lastSubScore);
+                questionValue.push(lastValue);
                 if(questionNum<questionsString.length-1)
                 {
-                      questionNum++;
+                    questionNum++;
+                    buttonQuestionBack.text="Вернуться назад";
                 }
                 else
                 {
@@ -2739,11 +2885,8 @@ anchors.fill:parent
                     graphQuestionNum.visible=false;
                     buttonQuestionBack.text="Выйти из теста";
                     testEnd=1;
-                    buttonDisagreeCompletely.visible=false;
-                    buttonDisagreePartially.visible=false;
-                    buttonUncertain.visible=false;
-                    buttonAgreeCompletely.visible=false;
-                    buttonAgreePartially.visible=false;
+                    buttonRow.visible=false;
+
 
                     if(database.checkID(user_id))                                       //Проверить, существует ли ID пользователя в БД
                     {
@@ -2780,24 +2923,31 @@ anchors.fill:parent
             hoverEnabled: true
             onClicked: {
                 console.log("Ответ нажат 4");
+                lastValue=2;
                 if((questionNum+1)<=15)
                 {
+                    lastSubScore=1;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
                         score51+=2;
+                        lastScore=5;
                         break;
                     case 1:
                         score11+=2;
+                        lastScore=1;
                         break;
                     case 2:
                         score21+=2;
+                        lastScore=2;
                         break;
                     case 3:
                         score31+=2;
+                        lastScore=3;
                         break;
                     case 4:
                         score41+=2;
+                        lastScore=4;
                         break;
                     default:
                         break;
@@ -2805,22 +2955,28 @@ anchors.fill:parent
                 }
                 if((questionNum+1) > 15 && (questionNum+1) <= 30)
                 {
+                    lastSubScore=2;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
                         score52+=2;
+                        lastScore=5;
                         break;
                     case 1:
                         score12+=2;
+                        lastScore=1;
                         break;
                     case 2:
                         score22+=2;
+                        lastScore=2;
                         break;
                     case 3:
                         score32+=2;
+                        lastScore=3;
                         break;
                     case 4:
                         score42+=2;
+                        lastScore=4;
                         break;
                     default:
                         break;
@@ -2828,22 +2984,28 @@ anchors.fill:parent
                 }
                 if((questionNum+1) > 30 && (questionNum+1) <= 45)
                 {
+                    lastSubScore=3;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
                         score53+=2;
+                        lastScore=5;
                         break;
                     case 1:
                         score13+=2;
+                        lastScore=1;
                         break;
                     case 2:
                         score23+=2;
+                        lastScore=2;
                         break;
                     case 3:
                         score33+=2;
+                        lastScore=3;
                         break;
                     case 4:
                         score43+=2;
+                        lastScore=4;
                         break;
                     default:
                         break;
@@ -2851,22 +3013,28 @@ anchors.fill:parent
                 }
                 if((questionNum+1) > 45 && (questionNum+1) <= 60)
                 {
+                    lastSubScore=4;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
                         score54+=2;
+                        lastScore=5;
                         break;
                     case 1:
                         score14+=2;
+                        lastScore=1;
                         break;
                     case 2:
                         score24+=2;
+                        lastScore=2;
                         break;
                     case 3:
                         score34+=2;
+                        lastScore=3;
                         break;
                     case 4:
                         score44+=2;
+                        lastScore=4;
                         break;
                     default:
                         break;
@@ -2874,31 +3042,41 @@ anchors.fill:parent
                 }
                 if((questionNum+1) > 60 && (questionNum+1) <= 75)
                 {
+                    lastSubScore=5;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
                         score55+=2;
+                        lastScore=5;
                         break;
                     case 1:
                         score15+=2;
+                        lastScore=1;
                         break;
                     case 2:
                         score25+=2;
+                        lastScore=2;
                         break;
                     case 3:
                         score35+=2;
+                        lastScore=3;
                         break;
                     case 4:
                         score45+=2;
+                        lastScore=4;
                         break;
                     default:
                         break;
                     }
                 }
+                questionScore.push(lastScore);
+                questionSubScore.push(lastSubScore);
+                questionValue.push(lastValue);
                 if(questionNum<questionsString.length-1)
                 {
 
                     questionNum++;
+                    buttonQuestionBack.text="Вернуться назад";
                 }
                 else
                 {
@@ -2958,11 +3136,8 @@ anchors.fill:parent
                     graphQuestionNum.visible=false;
                     buttonQuestionBack.text="Выйти из теста";
                     testEnd=1;
-                    buttonDisagreeCompletely.visible=false;
-                    buttonDisagreePartially.visible=false;
-                    buttonUncertain.visible=false;
-                    buttonAgreeCompletely.visible=false;
-                    buttonAgreePartially.visible=false;
+                    buttonRow.visible=false;
+
 
                    if(database.checkID(user_id))                                       //Проверить, существует ли ID пользователя в БД
                     {
@@ -2999,8 +3174,10 @@ anchors.fill:parent
             hoverEnabled: true
             onClicked: {
                 console.log("Ответ нажат 5");
+                lastValue=1;
                 if((questionNum+1)<=15)
                 {
+                    lastSubScore=1;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
@@ -3024,6 +3201,7 @@ anchors.fill:parent
                 }
                 if((questionNum+1) > 15 && (questionNum+1) <= 30)
                 {
+                    lastSubScore=2;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
@@ -3047,6 +3225,7 @@ anchors.fill:parent
                 }
                 if((questionNum+1) > 30 && (questionNum+1) <= 45)
                 {
+                    lastSubScore=3;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
@@ -3070,6 +3249,7 @@ anchors.fill:parent
                 }
                 if((questionNum+1) > 45 && (questionNum+1) <= 60)
                 {
+                    lastSubScore=4;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
@@ -3093,6 +3273,7 @@ anchors.fill:parent
                 }
                 if((questionNum+1) > 60 && (questionNum+1) <= 75)
                 {
+                    lastSubScore=1;
                     switch((questionNum+1) % 5)
                     {
                     case 0:
@@ -3114,9 +3295,13 @@ anchors.fill:parent
                         break;
                     }
                 }
+                questionScore.push(lastScore);
+                questionSubScore.push(lastSubScore);
+                questionValue.push(lastValue);
                 if(questionNum<questionsString.length-1)
                 {
                       questionNum++;
+                      buttonQuestionBack.text="Вернуться назад";
                 }
                 else
                 {
@@ -3176,11 +3361,7 @@ anchors.fill:parent
                     graphQuestionNum.visible=false;
                     buttonQuestionBack.text="Выйти из теста"
                     testEnd=1;
-                    buttonDisagreeCompletely.visible=false;
-                    buttonDisagreePartially.visible=false;
-                    buttonUncertain.visible=false;
-                    buttonAgreeCompletely.visible=false;
-                    buttonAgreePartially.visible=false;
+                    buttonRow.visible=false;
 
                     if(database.checkID(user_id))                                       //Проверить, существует ли ID пользователя в БД
                     {
@@ -3197,3 +3378,4 @@ anchors.fill:parent
 }
 
 }
+
