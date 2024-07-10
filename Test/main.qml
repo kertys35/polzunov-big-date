@@ -507,7 +507,6 @@ anchors.fill:parent
 
                         else if((questionNum == 0 || testEnd) && screenMenu==0 && resultScreen==0)                //Выйти из теста
                         {
-                            testEnd=0;
                             questionBack.visible=false;
                             screenMenu=1;
                             displayTextMenu.visible=true;
@@ -703,6 +702,7 @@ anchors.fill:parent
 
                         buttonQuestionBack.text="Выйти из теста"
                         screenMenu=0;
+                        testEnd=0;
 
                         questionNum=0;  //Обнуление счёта
                         score1=0;
