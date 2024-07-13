@@ -10,7 +10,6 @@ CONFIG += c++17
 
 SOURCES += \
     DBclass.cpp \
-    Test.cpp \
     chatclass.cpp \
     lentelem.cpp \
     main.cpp \
