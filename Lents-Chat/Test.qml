@@ -127,8 +127,6 @@ Rectangle  {
 что даже плачу",
         "Иногда я чувствую,
 что могу открыть в себе нечто новое"
-
-
     ];
     property variant resultExplanation: [                                                           //Объяснение результата
 //Экстраверсия
@@ -332,6 +330,7 @@ Rectangle  {
 Условно балльные оценки можно разделить на высокие (51–75 баллов),
 средние (41–50 баллов) и низкие (15–40 баллов)."
 
+    property int i:0;
     property int screenMenu: 1;                                                           //Флаг меню польззователя
     property int resultScreen:0;                                                          //Флаг окна результатов
 
@@ -415,6 +414,7 @@ anchors.fill:parent
                     id:buttonQuestionBackMouseArea
                     anchors.fill:parent
                     hoverEnabled: true
+
                     onClicked: {
                         if(questionNum > 0 && testEnd==0)       //Вернуться на вопрос назад
                         {
@@ -799,6 +799,16 @@ anchors.fill:parent
             font.pointSize: 20
         }
 
+        Timer{                                                                              //Таймер задержки до ответа сервера
+            id: serverTimer
+            interval: 2000
+            running: true
+            onTriggered:
+            {
+                database.get_results(user_id);
+            }
+        }
+
         Rectangle{                                                                            //кнопка просмотра результатов
             id:buttonResult
             x:250
@@ -822,6 +832,11 @@ anchors.fill:parent
                     id:buttonResultMouseArea
                     anchors.fill:parent
                     hoverEnabled: true
+                    onHoveredChanged: {
+                        database.get_results(user_id);
+
+                    }
+
                     onClicked: {
                         resultScreen=1;
                         questionBack.visible=true;
@@ -832,13 +847,13 @@ anchors.fill:parent
                         buttonQuestionBack.text="Выйти в меню"
                         noResult.visible = true;                           //Отображение сообщения об отсутствии данных о результатах теста
 
-                        if(database.checkID(user_id))                           //Получить данные пользователя из БД
+                        if(database.checkID())                           //Получить данные пользователя из БД
                         {
-                            score1=database.get_results1(user_id);
-                            score2=database.get_results2(user_id);
-                            score3=database.get_results3(user_id);
-                            score4=database.get_results4(user_id);
-                            score5=database.get_results5(user_id);
+                            score1=database.get_results1();
+                            score2=database.get_results2();
+                            score3=database.get_results3();
+                            score4=database.get_results4();
+                            score5=database.get_results5();
                         }
                         if(score1 > 0 && score2 > 0 && score3 > 0 && score4 > 0 && score5 > 0)
                         {
@@ -853,6 +868,7 @@ anchors.fill:parent
                             graphScore4.visible=true;
 
                             graphScore5.visible=true;
+
                             noResult.visible=false;
                         }
                     }
@@ -2430,13 +2446,13 @@ anchors.fill:parent
                     buttonRow.visible=false;
 
 
-                   if(database.checkID(user_id))                                       //Проверить, существует ли ID пользователя в БД
+                   if(database.checkID())                                       //Проверить, существует ли ID пользователя в БД
                    {
                        database.updateTable(score1,score2,score3,score4,score5, user_id);  //Изменение уже существующей записи
                    }
                    else
                    {
-                       database.insertIntoTable(score1,score2,score3,score4,score5);    //Добавить новую запись
+                       database.insertIntoTable(score1,score2,score3,score4,score5,user_id);    //Добавить новую запись
                    }
                 }
             }
@@ -2680,13 +2696,13 @@ anchors.fill:parent
                     testEnd=1;
                     buttonRow.visible=false;
 
-                    if(database.checkID(user_id))                                       //Проверить, существует ли ID пользователя в БД
+                    if(database.checkID())                                       //Проверить, существует ли ID пользователя в БД
                     {
                         database.updateTable(score1,score2,score3,score4,score5, user_id);  //Изменение уже существующей записи
                     }
                     else
                     {
-                        database.insertIntoTable(score1,score2,score3,score4,score5);    //Добавить новую запись
+                        database.insertIntoTable(score1,score2,score3,score4,score5,user_id);    //Добавить новую запись
                     }
                 }
             }
@@ -2930,13 +2946,13 @@ anchors.fill:parent
                     buttonRow.visible=false;
 
 
-                    if(database.checkID(user_id))                                       //Проверить, существует ли ID пользователя в БД
+                    if(database.checkID())                                       //Проверить, существует ли ID пользователя в БД
                     {
                         database.updateTable(score1,score2,score3,score4,score5, user_id);  //Изменение уже существующей записи
                     }
                     else
                     {
-                        database.insertIntoTable(score1,score2,score3,score4,score5);    //Добавить новую запись
+                        database.insertIntoTable(score1,score2,score3,score4,score5,user_id);    //Добавить новую запись
                     }
                 }
             }
@@ -3181,13 +3197,13 @@ anchors.fill:parent
                     buttonRow.visible=false;
 
 
-                   if(database.checkID(user_id))                                       //Проверить, существует ли ID пользователя в БД
+                   if(database.checkID())                                       //Проверить, существует ли ID пользователя в БД
                     {
                         database.updateTable(score1,score2,score3,score4,score5, user_id);  //Изменение уже существующей записи
                     }
                     else
                     {
-                        database.insertIntoTable(score1,score2,score3,score4,score5);    //Добавить новую запись
+                        database.insertIntoTable(score1,score2,score3,score4,score5,user_id);    //Добавить новую запись
                     }
                 }
             }
@@ -3405,13 +3421,13 @@ anchors.fill:parent
                     testEnd=1;
                     buttonRow.visible=false;
 
-                    if(database.checkID(user_id))                                       //Проверить, существует ли ID пользователя в БД
+                    if(database.checkID())                                       //Проверить, существует ли ID пользователя в БД
                     {
                         database.updateTable(score1,score2,score3,score4,score5, user_id);  //Изменение уже существующей записи
                     }
                     else
                     {
-                        database.insertIntoTable(score1,score2,score3,score4,score5);    //Добавить новую запись
+                        database.insertIntoTable(score1,score2,score3,score4,score5,user_id);    //Добавить новую запись
                     }
                 }
             }

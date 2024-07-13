@@ -294,7 +294,7 @@ void MainWindow::updateTest()
     QQuickWidget *Test=new QQuickWidget;
 
     Test->rootContext()->setContextProperty("database", database);
-    Test->rootContext()->setContextProperty("user_id", 2);
+    Test->rootContext()->setContextProperty("user_id", 4);
     Test->setSource(QUrl("qrc:/Test.qml"));
     Test->setResizeMode(Test->SizeRootObjectToView);
 

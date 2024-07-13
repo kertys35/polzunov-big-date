@@ -51,23 +51,30 @@ public:
 private:
     bool openDataBase();        //Открытие БД
     void closeDataBase();       //Закрытие БД
+private slots:
+    void on_newDataReceived(const QJsonArray &jsonArray);
+    void onHttpFinished(QNetworkReply *reply);
 public slots:
-    bool insertIntoTable(const QVariantList &data);                                                                             //Вставить значения тестов в БД
-    bool insertIntoTable(const QString &FirstResult, const QString &SecondResult, const QString &ThirdResult,                   //Подготовить массив данных для вставки в БД
-                         const QString &FourthResult, const QString &FifthResult);
-    bool updateTable(const QVariantList &data, const int id);                                                                  //Изменить значения тестов в БД
-    bool updateTable(const QString &FirstResult, const QString &SecondResult, const QString &ThirdResult,                     //Подготовить массив данных, которые будут использоваться в БД
+    void insertIntoTable(const QVariantList &data, const int id);                                                                             //Вставить значения тестов в БД
+    void insertIntoTable(const QString &FirstResult, const QString &SecondResult, const QString &ThirdResult,                   //Подготовить массив данных для вставки в БД
+                         const QString &FourthResult, const QString &FifthResult, const int id);
+    void updateTable(const QVariantList &data, const int id);                                                                  //Изменить значения тестов в БД
+    void updateTable(const QString &FirstResult, const QString &SecondResult, const QString &ThirdResult,                     //Подготовить массив данных, которые будут использоваться в БД
                      const QString &FourthResult, const QString &FifthResult, int id);
-    bool checkID(int id);                                                                                                    //Проверить, что существует запись с ID пользователя
-    int get_results1(int id);                                                                                                //Получить результат первого фактора теста
-    int get_results2(int id);                                                                                                //Получить результат второго фактора теста
-    int get_results3(int id);                                                                                                //Получить результат третьего фактора теста
-    int get_results4(int id);                                                                                                //Получить результат четвёртого фактора теста
-    int get_results5(int id);                                                                                                //Получить результат пятого фактора теста
+    bool checkID();                                                                                                    //Проверить, что существует запись с ID пользователя
+    void get_results(int id);
+    int get_results1();                                                                                                //Получить результат первого фактора теста
+    int get_results2();                                                                                                //Получить результат второго фактора теста
+    int get_results3();                                                                                                //Получить результат третьего фактора теста
+    int get_results4();                                                                                                //Получить результат четвёртого фактора теста
+    int get_results5();                                                                                                //Получить результат пятого фактора теста
 signals:
 
 private:
     QSqlDatabase db;
+    NetworkManager *networkManager;
+    int tempScore[5];
+    int flagUserID=0;
 };
 
 #endif // DBCLASS_H
