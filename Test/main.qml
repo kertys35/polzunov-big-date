@@ -2,21 +2,23 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-Window {
+Window{
     id:testScreen
     width: 1330
-    height: 780
-    visible: true
+    height: 720
     color: "Pink"
-    title: qsTr("Пятифакторный тест личности")
+    visible: true
     property variant questionsString:[                                                           //вопросы теста
         "Мне нравится заниматься физкультурой",
-        "Люди считают меня отзывчивым и доброжелательным человеком",
+        "Люди считают меня отзывчивым
+и доброжелательным человеком",
         "Я во всем ценю чистоту и порядок",
-        "Меня часто беспокоит мысль, что что-нибудь может случиться",
+        "Меня часто беспокоит мысль,
+что что-нибудь может случиться",
         "Все новое вызывает у меня  интерес",
         "Если я ничем не занят, то это меня беспокоит",
-        "Я стараюсь проявлять  дружелюбие ко всем людям",
+        "Я стараюсь проявлять дружелюбие
+ко всем людям",
         "Моя комната всегда аккуратно прибрана",
         "Иногда я расстраиваюсь из-за пустяков",
         "Мне нравятся неожиданности",
@@ -25,68 +27,106 @@ Window {
         "Я методичен и пунктуален во всем",
         "Мои чувства легко уязвимы и ранимы",
         "Мне не интересно, когда ответ ясен заранее",                        //15 вопросов
-        "Я люблю, чтобы другие быстро выполняли мои распоряжения",
-        "Я уступчивый и склонный к компромиссам человек",
-        "Я проявляю настойчивость, решая трудную задачу",
-        "В трудных ситуациях я весь сжимаюсь от напряжения",
+        "Я люблю, чтобы другие быстро
+выполняли мои распоряжения",
+        "Я уступчивый и склонный к
+компромиссам человек",
+        "Я проявляю настойчивость,
+решая трудную задачу",
+        "В трудных ситуациях я весь
+сжимаюсь от напряжения",
         "У меня очень живое воображение",
-        "Мне часто приходится быть лидером, проявлять инициативу",
-        "Я всегда готов оказать помощь и разделить чужие трудности",
+        "Мне часто приходится быть лидером,
+проявлять инициативу",
+        "Я всегда готов оказать помощь
+и разделить чужие трудности",
         "Я очень старательный во всех делах человек",
-        "У меня часто выступает холодный пот и дрожат руки",
+        "У меня часто выступает холодный пот
+и дрожат руки",
         "Мне нравится мечтать",
-        "Часто случается, что я руковожу, отдаю распоряжения другим людям",
-        "Я предпочитаю сотрудничать с другими, чем соперничать",
+        "Часто случается, что я руковожу,
+отдаю распоряжения другим людям",
+        "Я предпочитаю сотрудничать с другими,
+чем соперничать",
         "Я серьезно и прилежно отношусь к работе",
         "В необычной обстановке я часто нервничаю",
         "Иногда я погружаюсь в глубокие размышления",
-        "Мне нравится общаться с незнакомыми людьми",
+        "Мне нравится общаться
+с незнакомыми людьми",
         "Большинство людей добры от природы",
         "Люди часто доверяют мне ответственные дела",
-        "Иногда я чувствую себя одиноко, тоскливо и все валится из рук",
-        "Я хорошо знаю, что такое красота и элегантность",
-        "Мне нравится приобретать новых друзей и знакомых",
-        "Люди, с которыми я общаюсь, обычно мне нравятся",
+        "Иногда я чувствую себя одиноко,
+тоскливо и все валится из рук",
+        "Я хорошо знаю, что такое красота
+и элегантность",
+        "Мне нравится приобретать новых друзей
+и знакомых",
+        "Люди, с которыми я общаюсь,
+обычно мне нравятся",
         "Я требователен и строг в работе",
-        "Когда я сильно расстроен, у меня тяжело на душе",
-        "Музыка способна так захватить меня, что я теряю чувство времени",
-        "Я люблю находиться в больших и веселых компаниях",
-        "Большинство людей честные, и им можно доверять",
+        "Когда я сильно расстроен,
+у меня тяжело на душе",
+        "Музыка способна так захватить меня,
+что я теряю чувство времени",
+        "Я люблю находиться в больших
+и веселых компаниях",
+        "Большинство людей честные,
+и им можно доверять",
         "Я обычно работаю добросовестно",
         "Я легко впадаю в депрессию",
-        "Настоящее произведение искусства вызывает у меня восхищение",
-        "«Болея» на спортивных соревнованиях, я забываю обо всем",
-        "Я стараюсь проявлять чуткость, когда имею дело с людьми",
-        "Я редко делаю необдуманно то, что хочу сделать",
+        "Настоящее произведение искусства
+вызывает у меня восхищение",
+        "«Болея» на спортивных соревнованиях,
+я забываю обо всем",
+        "Я стараюсь проявлять чуткость,
+когда имею дело с людьми",
+        "Я редко делаю необдуманно то,
+что хочу сделать",
         "У меня много слабостей и недостатков",
         "Я хорошо понимаю свое душевное состояние",
-        "Я часто игнорирую сигналы, предупреждающие об опасности",
+        "Я часто игнорирую сигналы,
+предупреждающие об опасности",
         "Радость других я разделяю как собственную",
-        "Я обычно контролирую свои чувства и желания",
-        "Если я терплю неудачу, то обычно обвиняю себя",
-        "Я верю, что чувства делают мою жизнь содержательнее",
-        "Мне нравятся карнавальные шествия и демонстрации",
-        "Я стараюсь поставить себя на место другого человека, чтобы его понять",
-        "В магазине я обычно долго выбираю то, что надумал купить",
+        "Я обычно контролирую свои
+чувства и желания",
+        "Если я терплю неудачу,
+то обычно обвиняю себя",
+        "Я верю, что чувства делают мою жизнь
+содержательнее",
+        "Мне нравятся карнавальные шествия
+и демонстрации",
+        "Я стараюсь поставить себя на место
+другого человека, чтобы его понять",
+        "В магазине я обычно долго выбираю то,
+что надумал купить",
         "Иногда я чувствую себя жалким человеком",
-        "Я легко «вживаюсь» в переживания вымышленного героя",
-        "Я чувствую себя счастливым, когда на меня обращают внимание",
-        "В каждом человеке есть нечто, за что его можно уважать",
-        "Обычно я хорошо думаю, прежде чем действую",
-        "Часто у меня бывают взлеты и падения настроения",
-        "Иногда я чувствую себя фокусником, подшучивающим над людьми",
+        "Я легко «вживаюсь» в переживания
+вымышленного героя",
+        "Я чувствую себя счастливым,
+когда на меня обращают внимание",
+        "В каждом человеке есть нечто,
+за что его можно уважать",
+        "Обычно я хорошо думаю,
+прежде чем действую",
+        "Часто у меня бывают взлеты
+и падения настроения",
+        "Иногда я чувствую себя фокусником,
+подшучивающим над людьми",
         "Я привлекателен для лиц противоположного пола",
-        "Я всегда стараюсь быть добрым и внимательным с каждым человеком",
+        "Я всегда стараюсь быть добрым
+и внимательным с каждым человеком",
         "Перед путешествием я намечаю точный план",
-        "Мое настроение легко меняется на противоположное",
+        "Мое настроение легко меняется
+на противоположное",
         "Я думаю, что жизнь – это азартная игра",
         "Мне нравится выглядеть вызывающе",
-        "Некоторые говорят, что я снисходителен к окружающим",
+        "Некоторые говорят,
+что я снисходителен к окружающим",
         "Я точно и методично выполняю свою работу",
-        "Иногда я бываю настолько взволнован, что даже плачу",
-        "Иногда я чувствую, что могу открыть в себе нечто новое"
-
-
+        "Иногда я бываю настолько взволнован,
+что даже плачу",
+        "Иногда я чувствую,
+что могу открыть в себе нечто новое"
     ];
     property variant resultExplanation: [                                                           //Объяснение результата
 //Экстраверсия
@@ -289,8 +329,8 @@ Window {
 максимальное количество – 75.
 Условно балльные оценки можно разделить на высокие (51–75 баллов),
 средние (41–50 баллов) и низкие (15–40 баллов)."
-    property int user_id: 10;                                                              //Идентификатор пользователя
 
+    property int user_id:4;
     property int screenMenu: 1;                                                           //Флаг меню польззователя
     property int resultScreen:0;                                                          //Флаг окна результатов
 
@@ -340,10 +380,6 @@ Window {
     property int testEnd: 0;                                                            //Флаг окончания теста
 
 
-    Connections{                                                                        //Установка связи с сервером
-    ////////////PLACEHOLDER////////////////////////////
-    }
-
 ScrollView{
 anchors.fill:parent
     Column{
@@ -363,8 +399,8 @@ anchors.fill:parent
                                return "White";
                            }
 
-                width: 150
-                height: 75
+                width: 125
+                height: 70
                 Text{
                     id:buttonQuestionBack
                     anchors.centerIn: parent
@@ -374,12 +410,13 @@ anchors.fill:parent
                     id:buttonQuestionBackMouseArea
                     anchors.fill:parent
                     hoverEnabled: true
+
                     onClicked: {
                         if(questionNum > 0 && testEnd==0)       //Вернуться на вопрос назад
                         {
                             if(questionNum==1)
                                 buttonQuestionBack.text="Выйти из теста";
-                            if(questionNum >= 1)
+                            if(questionNum >= 1 && resultScreen==0)
                             {
                                 lastValue=questionValue.pop();
                                 lastSubScore=questionSubScore.pop();
@@ -507,6 +544,8 @@ anchors.fill:parent
 
                         else if((questionNum == 0 || testEnd) && screenMenu==0 && resultScreen==0)                //Выйти из теста
                         {
+                            testEnd=0;
+                            questionNum=0
                             questionBack.visible=false;
                             screenMenu=1;
                             displayTextMenu.visible=true;
@@ -622,20 +661,20 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:350
+            x:150
             y:20
             Text{                                                                                  //вывод номера вопроса на экран пользователя
                 id: displayQuestionNum
                 text: "Вопрос "+(questionNum+1) +" из "+questionsString.length
-                font.pointSize: 40
+                font.pointSize: 30
             }
             Row{                                                                        //Вывод  графической информации о прогрессе теста
-                y:20
+                y:14
                 Repeater{
                     model: (questionNum)
                     Rectangle{
-                        width:(300/questionsString.length)
-                        height:40
+                        width:(200/questionsString.length)
+                        height:30
                         color: if((questionNum+1) >= 0 && (questionNum+1)<= 25)
                                    return "light green";
                                 else if((questionNum+1)>= 26 && (questionNum+1) <= 50)
@@ -647,8 +686,8 @@ anchors.fill:parent
                 Repeater{
                     model: (questionsString.length - (questionNum))
                     Rectangle{
-                        width:(300/questionsString.length)
-                        height:40
+                        width:(200/questionsString.length)
+                        height:30
                         color:"black"
                     }
                 }
@@ -656,7 +695,7 @@ anchors.fill:parent
         }
         Text{
             id:displayTextMenu
-            x:350
+            x:115
             y:140
             visible:true
             text:"Пятифакторный тест\n          личности"
@@ -666,7 +705,7 @@ anchors.fill:parent
 
         Rectangle{                                                                            //кнопка начала теста
             id:buttonStart
-            x:480
+            x:250
             y:180
                 color: if(buttonStartMouseArea.containsPress){
                            return "Dark green";
@@ -702,7 +741,6 @@ anchors.fill:parent
 
                         buttonQuestionBack.text="Выйти из теста"
                         screenMenu=0;
-                        testEnd=0;
 
                         questionNum=0;  //Обнуление счёта
                         score1=0;
@@ -750,16 +788,26 @@ anchors.fill:parent
 
         Text{                                                                                 //Текст при отсутствии результатов
             id: noResult
-            x:350
+            x:150
             y:80
             visible:false
             text: "Нет результатов теста."
             font.pointSize: 20
         }
 
+        Timer{                                                                              //Таймер задержки до ответа сервера
+            id: serverTimer
+            interval: 2000
+            running: true
+            onTriggered:
+            {
+                database.get_results(user_id);
+            }
+        }
+
         Rectangle{                                                                            //кнопка просмотра результатов
             id:buttonResult
-            x:480
+            x:250
             y:180
                 color: if(buttonResultMouseArea.containsPress){
                            return "Dark green";
@@ -780,6 +828,11 @@ anchors.fill:parent
                     id:buttonResultMouseArea
                     anchors.fill:parent
                     hoverEnabled: true
+                    onHoveredChanged: {
+                        database.get_results(user_id);
+
+                    }
+
                     onClicked: {
                         resultScreen=1;
                         questionBack.visible=true;
@@ -788,14 +841,15 @@ anchors.fill:parent
                         buttonResult.visible=false;
 
                         buttonQuestionBack.text="Выйти в меню"
+                        noResult.visible = true;                           //Отображение сообщения об отсутствии данных о результатах теста
 
-                        if(database.checkID(user_id))                           //Получить данные пользователя из БД
+                        if(database.checkID())                           //Получить данные пользователя из БД
                         {
-                            score1=database.get_results1(user_id);
-                            score2=database.get_results2(user_id);
-                            score3=database.get_results3(user_id);
-                            score4=database.get_results4(user_id);
-                            score5=database.get_results5(user_id);
+                            score1=database.get_results1();
+                            score2=database.get_results2();
+                            score3=database.get_results3();
+                            score4=database.get_results4();
+                            score5=database.get_results5();
                         }
                         if(score1 > 0 && score2 > 0 && score3 > 0 && score4 > 0 && score5 > 0)
                         {
@@ -810,16 +864,16 @@ anchors.fill:parent
                             graphScore4.visible=true;
 
                             graphScore5.visible=true;
+
+                            noResult.visible=false;
                         }
-                        else
-                            noResult.visible = true;                           //Отображение сообщения об отсутствии данных о результатах теста
                     }
                 }
             }
 
         Text{                                                                                 //вывод вопроса на экран пользователя
             id: displayQuestion
-            x:350
+            x:150
             y:80
             visible:false
             text: questionsString[questionNum]
@@ -827,10 +881,10 @@ anchors.fill:parent
         }
         Text{                                                                                  //вывод результата на экран пользователя
             id: displayResult
-            x:350
+            x:150
             y:10
             visible: false
-            text: "Результаты теста: "
+            text: "Результаты теста:                                                  "
             font.pointSize: 40
         }
 
@@ -2189,7 +2243,7 @@ anchors.fill:parent
         Text{                                                                                 //вывод объяснения результата пользователя
             id: displayExplanation5
             visible: false
-            x:300
+            x:100
             y:520
             text: ""
             font.pointSize: 15
@@ -2197,7 +2251,7 @@ anchors.fill:parent
         Text{                                                                                   //вывод объяснения оценок теста
             id: displayExplanationScore
             visible: false
-            x:300
+            x:100
             y:520
             text: scoreExplanation
             font.pointSize: 15
@@ -2208,13 +2262,13 @@ anchors.fill:parent
            spacing: 20
             visible: false
             Text{                                                                                 //вывод объяснения результата пользователя
-                x:300
+                x:100
                 y:120
                 text: "Экстраверсия\n"+ resultExplanation[0]
                 font.pointSize: 15
             }
             Text{                                                                                 //вывод объяснения результата пользователя
-                x:300
+                x:100
                 y:120
                 text: "Интроверсия\n" + resultExplanation[1]
                 font.pointSize: 15
@@ -2225,13 +2279,13 @@ anchors.fill:parent
            spacing: 20
             visible: false
             Text{                                                                                 //вывод объяснения результата пользователя
-                x:300
+                x:100
                 y:120
                 text: "Привязанность\n" + resultExplanation[2]
                 font.pointSize: 15
             }
             Text{                                                                                 //вывод объяснения результата пользователя
-                x:300
+                x:100
                 y:120
                 text: "Обособленность\n" + resultExplanation[3]
                 font.pointSize: 15
@@ -2242,13 +2296,13 @@ anchors.fill:parent
             spacing: 20
             visible: false
             Text{                                                                                 //вывод объяснения результата пользователя
-                x:300
+                x:100
                 y:120
                 text: "Самоконтроль\n" + resultExplanation[4]
                 font.pointSize: 15
             }
             Text{                                                                                 //вывод объяснения результата пользователя
-                x:300
+                x:100
                 y:120
                 text: "Импульсивность\n" + resultExplanation[5]
                 font.pointSize: 15
@@ -2259,13 +2313,13 @@ anchors.fill:parent
             spacing: 20
             visible: false
             Text{                                                                                 //вывод объяснения результата пользователя
-                x:300
+                x:100
                 y:120
                 text: "Эмоциональная устойчивость\n" + resultExplanation[6]
                 font.pointSize: 15
             }
             Text{                                                                                 //вывод объяснения результата пользователя
-                x:300
+                x:100
                 y:120
                 text: "Эмоциональная неустойчивость\n" + resultExplanation[7]
                 font.pointSize: 15
@@ -2276,13 +2330,13 @@ anchors.fill:parent
             spacing: 20
             visible: false
             Text{                                                                                 //вывод объяснения результата пользователя
-                x:300
+                x:100
                 y:120
                 text: "Экспрессивность\n" + resultExplanation[8]
                 font.pointSize: 15
             }
             Text{                                                                                 //вывод объяснения результата пользователя
-                x:300
+                x:100
                 y:120
                 text: "Практичность\n" + resultExplanation[9]
                 font.pointSize: 15
@@ -2295,9 +2349,9 @@ anchors.fill:parent
 
 
     Row{                                                                            //строка выбора ответов на вопрос
-        y:350
-        x:300
-        spacing: 40
+        y:250
+        x:25
+        spacing: 20
         id:buttonRow
         visible:false
     Rectangle{
@@ -2311,7 +2365,7 @@ anchors.fill:parent
                        return "White";
                    }
 
-        width: 150
+        width: 125
         height: 75
         Text{
             anchors.centerIn: parent
@@ -2539,13 +2593,13 @@ anchors.fill:parent
                     buttonRow.visible=false;
 
 
-                   if(database.checkID(user_id))                                       //Проверить, существует ли ID пользователя в БД
+                   if(database.checkID())                                       //Проверить, существует ли ID пользователя в БД
                    {
                        database.updateTable(score1,score2,score3,score4,score5, user_id);  //Изменение уже существующей записи
                    }
                    else
                    {
-                       database.insertIntoTable(score1,score2,score3,score4,score5);    //Добавить новую запись
+                       database.insertIntoTable(score1,score2,score3,score4,score5,user_id);    //Добавить новую запись
                    }
                 }
             }
@@ -2562,7 +2616,7 @@ anchors.fill:parent
                        return "White";
                    }
 
-        width: 150
+        width: 125
         height: 75
         Text{
             anchors.centerIn: parent
@@ -2789,13 +2843,13 @@ anchors.fill:parent
                     testEnd=1;
                     buttonRow.visible=false;
 
-                    if(database.checkID(user_id))                                       //Проверить, существует ли ID пользователя в БД
+                    if(database.checkID())                                       //Проверить, существует ли ID пользователя в БД
                     {
                         database.updateTable(score1,score2,score3,score4,score5, user_id);  //Изменение уже существующей записи
                     }
                     else
                     {
-                        database.insertIntoTable(score1,score2,score3,score4,score5);    //Добавить новую запись
+                        database.insertIntoTable(score1,score2,score3,score4,score5,user_id);    //Добавить новую запись
                     }
                 }
             }
@@ -2812,7 +2866,7 @@ anchors.fill:parent
                        return "White";
                    }
 
-        width: 150
+        width: 125
         height: 75
         Text{
             anchors.centerIn: parent
@@ -3039,13 +3093,13 @@ anchors.fill:parent
                     buttonRow.visible=false;
 
 
-                    if(database.checkID(user_id))                                       //Проверить, существует ли ID пользователя в БД
+                    if(database.checkID())                                       //Проверить, существует ли ID пользователя в БД
                     {
                         database.updateTable(score1,score2,score3,score4,score5, user_id);  //Изменение уже существующей записи
                     }
                     else
                     {
-                        database.insertIntoTable(score1,score2,score3,score4,score5);    //Добавить новую запись
+                        database.insertIntoTable(score1,score2,score3,score4,score5,user_id);    //Добавить новую запись
                     }
                 }
             }
@@ -3062,7 +3116,7 @@ anchors.fill:parent
                        return "White";
                    }
 
-        width: 150
+        width: 125
         height: 75
         Text{
             anchors.centerIn: parent
@@ -3290,13 +3344,13 @@ anchors.fill:parent
                     buttonRow.visible=false;
 
 
-                   if(database.checkID(user_id))                                       //Проверить, существует ли ID пользователя в БД
+                   if(database.checkID())                                       //Проверить, существует ли ID пользователя в БД
                     {
                         database.updateTable(score1,score2,score3,score4,score5, user_id);  //Изменение уже существующей записи
                     }
                     else
                     {
-                        database.insertIntoTable(score1,score2,score3,score4,score5);    //Добавить новую запись
+                        database.insertIntoTable(score1,score2,score3,score4,score5,user_id);    //Добавить новую запись
                     }
                 }
             }
@@ -3313,7 +3367,7 @@ anchors.fill:parent
                        return "White";
                    }
 
-        width: 150
+        width: 125
         height: 75
         Text{
             anchors.centerIn: parent
@@ -3514,13 +3568,13 @@ anchors.fill:parent
                     testEnd=1;
                     buttonRow.visible=false;
 
-                    if(database.checkID(user_id))                                       //Проверить, существует ли ID пользователя в БД
+                    if(database.checkID())                                       //Проверить, существует ли ID пользователя в БД
                     {
                         database.updateTable(score1,score2,score3,score4,score5, user_id);  //Изменение уже существующей записи
                     }
                     else
                     {
-                        database.insertIntoTable(score1,score2,score3,score4,score5);    //Добавить новую запись
+                        database.insertIntoTable(score1,score2,score3,score4,score5,user_id);    //Добавить новую запись
                     }
                 }
             }
@@ -3529,4 +3583,3 @@ anchors.fill:parent
 }
 
 }
-
