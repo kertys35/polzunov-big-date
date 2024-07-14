@@ -840,13 +840,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults1
                  y: -10
                 visible: true
-                text: "1. Экстраверсия – интроверсия: " + score1 +"/75"
                 font.pointSize: 20
+                onVisibleChanged: {
+                        if(score1 <= 38)
+                            text="1. Интроверсия: " + score1 +"/75"
+                        else
+                            text="1. Экстраверсия: " + score1 +"/75"
+                }
             }
             Row{                                                                        //Вывод  графической информации о результатах теста
                 Repeater{
@@ -879,13 +884,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults11
                  y: -10
                 visible: true
-                text: "1.1. Активность - пассивность: " + score11 +"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score11 <= 7)
+                            text="1.1. Пассивность: " + score11 +"/15"
+                        else
+                            text="1.1. Активность: " + score11 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
@@ -918,13 +928,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults12
                  y: -10
                 visible: true
-                text: "1.2. Экстраверсия – интроверсия: " + score12 +"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score12 <= 7)
+                            text="1.2. Подчиненность: " + score12 +"/15"
+                        else
+                            text="1.2. Доминирование: " + score12 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
@@ -957,13 +972,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults13
                  y: -10
                 visible: true
-                text: "1.3. Экстраверсия – интроверсия: " + score13+"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score13 <= 7)
+                            text="1.3. Замкнутость: " + score13 +"/15"
+                        else
+                            text="1.3. Общительность: " + score13 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
@@ -996,13 +1016,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults14
                  y: -10
                 visible: true
-                text: "1.4. Экстраверсия – интроверсия: " + score14 +"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score14 <= 7)
+                            text="1.4. Избегание впечатлений: " + score14 +"/15"
+                        else
+                            text="1.4. Поиск впечатлений: " + score14 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
@@ -1035,13 +1060,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults15
                  y: -10
                 visible: true
-                text: "1.5. Экстраверсия – интроверсия: " + score15 +"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score15 <= 7)
+                            text="1.5. Избегание внимания: " + score15 +"/15"
+                        else
+                            text="1.5. Привлечение внимания: " + score15 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
@@ -1070,7 +1100,7 @@ anchors.fill:parent
         Text{                                                                                 //вывод объяснения результата пользователя
             id: displayExplanation1
             visible: false
-            x:300
+            x:100
             y:120
             text: ""
             font.pointSize: 15
@@ -1082,13 +1112,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults2
                 visible: true
                 y:-10
-                text: "2. Привязанность – обособленность: " +score2 +"/75"
                 font.pointSize: 20
+                onVisibleChanged: {
+                        if(score2 <= 38)
+                            text="2. Обособленность: " + score2 +"/75"
+                        else
+                            text="2. Привязанность: " + score2 +"/75"
+                }
             }
             Row{                                                                        //Вывод  графической информации о результатах теста
                 Repeater{
@@ -1121,13 +1156,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults21
                  y: -10
                 visible: true
-                text: "2.1. Теплота - равнодушие: " + score21 +"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score21 <= 7)
+                            text="2.1. Равнодушие: " + score21 +"/15"
+                        else
+                            text="2.1. Теплота: " + score21 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
@@ -1160,13 +1200,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults22
                  y: -10
                 visible: true
-                text: "2.2. Сотрудничество - соперничество: " + score22 +"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score22 <= 7)
+                            text="2.2. Соперничество: " + score22 +"/15"
+                        else
+                            text="2.2. Сотрудничество: " + score22 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
@@ -1199,13 +1244,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults23
                  y: -10
                 visible: true
-                text: "2.3. Доверчивость - подозрительность: " + score23+"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score23 <= 7)
+                            text="2.3. Подозрительность: " + score23 +"/15"
+                        else
+                            text="2.3. Доверчивость: " + score23 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
@@ -1238,13 +1288,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults24
                  y: -10
                 visible: true
-                text: "2.4. Понимание - непонимание: " + score24 +"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score24 <= 7)
+                            text="2.4. непонимание: " + score24 +"/15"
+                        else
+                            text="2.4. Понимание: " + score24 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
@@ -1277,13 +1332,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults25
                  y: -10
                 visible: true
-                text: "2.5. Уважение других - самоуважение: " + score25 +"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score25 <= 7)
+                            text="2.5. Самоуважение: " + score25 +"/15"
+                        else
+                            text="2.5. Уважение других: " + score25 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
@@ -1312,7 +1372,7 @@ anchors.fill:parent
         Text{                                                                                 //вывод объяснения результата пользователя
             id: displayExplanation2
             visible: false
-            x:300
+            x:100
             y:220
             text: ""
             font.pointSize: 15
@@ -1324,13 +1384,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults3
                 visible: true
                 y:-10
-                text: "3. Самоконтроль – импульсивность: " +score3 +"/75"
                 font.pointSize: 20
+                onVisibleChanged: {
+                        if(score3 <= 38)
+                            text="3. Импульсивность: " + score3 +"/75"
+                        else
+                            text="3. Самоконтроль: " + score3 +"/75"
+                }
             }
             Row{                                                                        //Вывод  графической информации о результатах теста
                 Repeater{
@@ -1363,13 +1428,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults31
                  y: -10
                 visible: true
-                text: "3.1. Аккуратность - неаккуратность: " + score31 +"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score31 <= 7)
+                            text="3.1. Неаккуратность: " + score31 +"/15"
+                        else
+                            text="3.1. Аккуратность: " + score31 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
@@ -1402,13 +1472,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults32
                  y: -10
                 visible: true
-                text: "3.2. Настойчивость - слабоволие: " + score32 +"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score32 <= 7)
+                            text="3.2. Слабоволие: " + score32 +"/15"
+                        else
+                            text="3.2. Настойчивость: " + score32 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
@@ -1441,13 +1516,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults33
                  y: -10
                 visible: true
-                text: "3.3. Ответственность - безответственность: " + score33+"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score33 <= 7)
+                            text="3.3. Безответственность: " + score33 +"/15"
+                        else
+                            text="3.3. Ответственность: " + score33 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
@@ -1480,13 +1560,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults34
                  y: -10
                 visible: true
-                text: "3.4. Самоконтроль - импульсивность: " + score34 +"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score34 <= 7)
+                            text="3.4. Импульсивность: " + score34 +"/15"
+                        else
+                            text="3.4. Самоконтроль: " + score34 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
@@ -1519,13 +1604,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults35
                  y: -10
                 visible: true
-                text: "3.5. Предусмотрительность - беспечность: " + score35 +"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score35 <= 7)
+                            text="3.5. Беспечность: " + score35 +"/15"
+                        else
+                            text="3.5. Предусмотрительность: " + score35 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
@@ -1554,7 +1644,7 @@ anchors.fill:parent
         Text{                                                                                 //вывод объяснения результата пользователя
             id: displayExplanation3
             visible: false
-            x:300
+            x:100
             y:320
             text: ""
             font.pointSize: 15
@@ -1566,13 +1656,19 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults4
                 visible: true
                 y:-10
-                text: "4. Эмоциональная устойчивость - неустойчивость: " +score4 +"/75"
                 font.pointSize: 20
+                onVisibleChanged: {
+                        if(score4 <= 38)
+                            text="4. Эмоциональная неустойчивость: " + score4 +"/75"
+                        else
+                            text="4. Эмоциональная устойчивость: " + score4 +"/75"
+                }
+
             }
             Row{                                                                        //Вывод  графической информации о результатах теста
                 Repeater{
@@ -1605,13 +1701,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults41
                  y: -10
                 visible: true
-                text: "4.1. Тревожность - беззаботность: " + score41 +"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score41 <= 7)
+                            text="4.1. Беззаботность: " + score41 +"/15"
+                        else
+                            text="4.1. Тревожность: " + score41 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
@@ -1644,13 +1745,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults42
                  y: -10
                 visible: true
-                text: "4.2. Напряженность - расслабленность: " + score42 +"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score42 <= 7)
+                            text="4.2. Расслабленность: " + score42 +"/15"
+                        else
+                            text="4.2. Напряженность: " + score42 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
@@ -1683,13 +1789,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults43
                  y: -10
                 visible: true
-                text: "4.3. Депрессивность - эмоциональная комфортность: " + score43+"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score43 <= 7)
+                            text="4.3. Эмоциональная комфортность: " + score43 +"/15"
+                        else
+                            text="4.3. Депрессивность: " + score43 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
@@ -1722,13 +1833,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults44
                  y: -10
                 visible: true
-                text: "4.4. Самокритика - самодостаточность: " + score44 +"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score44 <= 7)
+                            text="4.4. Самодостаточность: " + score44 +"/15"
+                        else
+                            text="4.4. Самокритика: " + score44 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
@@ -1761,13 +1877,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults45
                  y: -10
                 visible: true
-                text: "4.5. Эмоциональная лабильность - эмоциональная стабильность: " + score45 +"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score45 <= 7)
+                            text="4.5. Эмоциональная стабильность: " + score45 +"/15"
+                        else
+                            text="4.5. Эмоциональная нестабильность: " + score45 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
@@ -1796,7 +1917,7 @@ anchors.fill:parent
         Text{                                                                                 //вывод объяснения результата пользователя
             id: displayExplanation4
             visible: false
-            x:300
+            x:100
             y:420
             text: ""
             font.pointSize: 15
@@ -1808,13 +1929,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults5
                 visible: true
                 y:-10
-                text: "5. Экспрессивность – практичность: " +score5 +"/75 "
                 font.pointSize: 20
+                onVisibleChanged: {
+                        if(score5 <= 38)
+                            text="5. Практичность: " + score5 +"/75"
+                        else
+                            text="5. Экспрессивность: " + score5 +"/75"
+                }
             }
             Row{                                                                        //Вывод  графической информации о результатах теста
                 Repeater{
@@ -1847,13 +1973,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults51
                  y: -10
                 visible: true
-                text: "5.1. Любопытство - консерватизм: " + score51 +"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score51 <= 7)
+                            text="5.1. Консерватизм: " + score51 +"/15"
+                        else
+                            text="5.1. Любопытство: " + score51 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
@@ -1886,13 +2017,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults52
                  y: -10
                 visible: true
-                text: "5.2. Мечтательность - реалистичность: " + score52 +"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score52 <= 7)
+                            text="5.2. реалистичность: " + score52 +"/15"
+                        else
+                            text="5.2. Мечтательность: " + score52 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
@@ -1925,13 +2061,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults53
                  y: -10
                 visible: true
-                text: "5.3. Артистичность - неартистичность: " + score53+"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score53 <= 7)
+                            text="5.3. Неартистичность: " + score53 +"/15"
+                        else
+                            text="5.3. Артистичность: " + score53 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
@@ -1964,13 +2105,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults54
                  y: -10
                 visible: true
-                text: "5.4. Сензитивность - нечувствительность: " + score54 +"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score54 <= 7)
+                            text="5.4. Нечувствительность: " + score54 +"/15"
+                        else
+                            text="5.4. Сензитивность: " + score54 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
@@ -2003,13 +2149,18 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:300
+            x:100
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults55
                  y: -10
                 visible: true
-                text: "5.5. Пластичность - ригидность: " + score55 +"/15"
                 font.pointSize: 15
+                onVisibleChanged: {
+                        if(score55 <= 7)
+                            text="5.5. Ригидность: " + score55 +"/15"
+                        else
+                            text="5.5. Пластичность: " + score55 +"/15"
+                }
             }
             Row{                                                                        //Вывод  графической информации о доп. параметрах результата теста
                 Repeater{
