@@ -661,7 +661,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:150
+            x:250
             y:20
             Text{                                                                                  //вывод номера вопроса на экран пользователя
                 id: displayQuestionNum
@@ -695,7 +695,7 @@ anchors.fill:parent
         }
         Text{
             id:displayTextMenu
-            x:115
+            x:215
             y:140
             visible:true
             text:"Пятифакторный тест\n          личности"
@@ -705,7 +705,7 @@ anchors.fill:parent
 
         Rectangle{                                                                            //кнопка начала теста
             id:buttonStart
-            x:250
+            x:350
             y:180
                 color: if(buttonStartMouseArea.containsPress){
                            return "Dark green";
@@ -788,7 +788,7 @@ anchors.fill:parent
 
         Text{                                                                                 //Текст при отсутствии результатов
             id: noResult
-            x:150
+            x:250
             y:80
             visible:false
             text: "Нет результатов теста."
@@ -807,7 +807,7 @@ anchors.fill:parent
 
         Rectangle{                                                                            //кнопка просмотра результатов
             id:buttonResult
-            x:250
+            x:350
             y:180
                 color: if(buttonResultMouseArea.containsPress){
                            return "Dark green";
@@ -873,7 +873,7 @@ anchors.fill:parent
 
         Text{                                                                                 //вывод вопроса на экран пользователя
             id: displayQuestion
-            x:150
+            x:250
             y:80
             visible:false
             text: questionsString[questionNum]
@@ -881,7 +881,7 @@ anchors.fill:parent
         }
         Text{                                                                                  //вывод результата на экран пользователя
             id: displayResult
-            x:150
+            x:250
             y:10
             visible: false
             text: "Результаты теста:                                                  "
@@ -894,7 +894,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults1
                  y: -10
@@ -938,7 +938,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults11
                  y: -10
@@ -982,7 +982,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults12
                  y: -10
@@ -1026,7 +1026,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults13
                  y: -10
@@ -1070,7 +1070,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults14
                  y: -10
@@ -1114,7 +1114,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults15
                  y: -10
@@ -1154,7 +1154,7 @@ anchors.fill:parent
         Text{                                                                                 //вывод объяснения результата пользователя
             id: displayExplanation1
             visible: false
-            x:100
+            x:250
             y:120
             text: ""
             font.pointSize: 15
@@ -1166,7 +1166,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults2
                 visible: true
@@ -1210,7 +1210,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults21
                  y: -10
@@ -1254,7 +1254,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults22
                  y: -10
@@ -1298,7 +1298,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults23
                  y: -10
@@ -1342,7 +1342,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults24
                  y: -10
@@ -1386,7 +1386,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults25
                  y: -10
@@ -1438,7 +1438,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults3
                 visible: true
@@ -1482,7 +1482,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults31
                  y: -10
@@ -1526,7 +1526,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults32
                  y: -10
@@ -1570,7 +1570,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults33
                  y: -10
@@ -1614,7 +1614,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults34
                  y: -10
@@ -1658,7 +1658,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults35
                  y: -10
@@ -1698,7 +1698,7 @@ anchors.fill:parent
         Text{                                                                                 //вывод объяснения результата пользователя
             id: displayExplanation3
             visible: false
-            x:100
+            x:250
             y:320
             text: ""
             font.pointSize: 15
@@ -1710,7 +1710,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults4
                 visible: true
@@ -1755,7 +1755,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults41
                  y: -10
@@ -1799,7 +1799,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults42
                  y: -10
@@ -1843,7 +1843,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults43
                  y: -10
@@ -1887,7 +1887,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults44
                  y: -10
@@ -1931,7 +1931,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults45
                  y: -10
@@ -1971,7 +1971,7 @@ anchors.fill:parent
         Text{                                                                                 //вывод объяснения результата пользователя
             id: displayExplanation4
             visible: false
-            x:100
+            x:250
             y:420
             text: ""
             font.pointSize: 15
@@ -1983,7 +1983,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults5
                 visible: true
@@ -2027,7 +2027,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults51
                  y: -10
@@ -2071,7 +2071,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults52
                  y: -10
@@ -2115,7 +2115,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults53
                  y: -10
@@ -2159,7 +2159,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults54
                  y: -10
@@ -2203,7 +2203,7 @@ anchors.fill:parent
             Layout.fillWidth: true
             visible: false
             spacing: 10
-            x:100
+            x:250
             Text{                                                                                 //вывод результата на экран пользователя
                 id: displayResults55
                  y: -10
@@ -2243,7 +2243,7 @@ anchors.fill:parent
         Text{                                                                                 //вывод объяснения результата пользователя
             id: displayExplanation5
             visible: false
-            x:100
+            x:250
             y:520
             text: ""
             font.pointSize: 15
@@ -2251,7 +2251,7 @@ anchors.fill:parent
         Text{                                                                                   //вывод объяснения оценок теста
             id: displayExplanationScore
             visible: false
-            x:100
+            x:250
             y:520
             text: scoreExplanation
             font.pointSize: 15
@@ -2262,13 +2262,13 @@ anchors.fill:parent
            spacing: 20
             visible: false
             Text{                                                                                 //вывод объяснения результата пользователя
-                x:100
+                x:250
                 y:120
                 text: "Экстраверсия\n"+ resultExplanation[0]
                 font.pointSize: 15
             }
             Text{                                                                                 //вывод объяснения результата пользователя
-                x:100
+                x:250
                 y:120
                 text: "Интроверсия\n" + resultExplanation[1]
                 font.pointSize: 15
@@ -2279,13 +2279,13 @@ anchors.fill:parent
            spacing: 20
             visible: false
             Text{                                                                                 //вывод объяснения результата пользователя
-                x:100
+                x:250
                 y:120
                 text: "Привязанность\n" + resultExplanation[2]
                 font.pointSize: 15
             }
             Text{                                                                                 //вывод объяснения результата пользователя
-                x:100
+                x:250
                 y:120
                 text: "Обособленность\n" + resultExplanation[3]
                 font.pointSize: 15
@@ -2296,13 +2296,13 @@ anchors.fill:parent
             spacing: 20
             visible: false
             Text{                                                                                 //вывод объяснения результата пользователя
-                x:100
+                x:250
                 y:120
                 text: "Самоконтроль\n" + resultExplanation[4]
                 font.pointSize: 15
             }
             Text{                                                                                 //вывод объяснения результата пользователя
-                x:100
+                x:250
                 y:120
                 text: "Импульсивность\n" + resultExplanation[5]
                 font.pointSize: 15
@@ -2313,13 +2313,13 @@ anchors.fill:parent
             spacing: 20
             visible: false
             Text{                                                                                 //вывод объяснения результата пользователя
-                x:100
+                x:250
                 y:120
                 text: "Эмоциональная устойчивость\n" + resultExplanation[6]
                 font.pointSize: 15
             }
             Text{                                                                                 //вывод объяснения результата пользователя
-                x:100
+                x:250
                 y:120
                 text: "Эмоциональная неустойчивость\n" + resultExplanation[7]
                 font.pointSize: 15
@@ -2330,13 +2330,13 @@ anchors.fill:parent
             spacing: 20
             visible: false
             Text{                                                                                 //вывод объяснения результата пользователя
-                x:100
+                x:250
                 y:120
                 text: "Экспрессивность\n" + resultExplanation[8]
                 font.pointSize: 15
             }
             Text{                                                                                 //вывод объяснения результата пользователя
-                x:100
+                x:250
                 y:120
                 text: "Практичность\n" + resultExplanation[9]
                 font.pointSize: 15
@@ -2350,7 +2350,7 @@ anchors.fill:parent
 
     Row{                                                                            //строка выбора ответов на вопрос
         y:250
-        x:25
+        x:150
         spacing: 20
         id:buttonRow
         visible:false
