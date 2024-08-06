@@ -2,19 +2,20 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-Rectangle  {
+Window  {
     id:testScreen
     width: 1330
     height: 720
     color: "Pink"
     visible: true
     property variant questionsString:[                                                           //вопросы теста
-
+        ""
     ];
     property variant resultExplanation: [                                                           //Объяснение результата
-
+        ""
     ]
 
+    property int user_id: 1;
     property int questionNum: 0;                                                                      //номер вопроса
     property string scoreExplanation: ""                                                                 //Объясненик кол-ва баллов
 
@@ -385,7 +386,7 @@ anchors.fill:parent
             x:115
             y:140
             visible:true
-            text:"Пятифакторный тест\n          личности"
+            text:"Тест политических взглядов"
             font.pointSize: 40
 
         }

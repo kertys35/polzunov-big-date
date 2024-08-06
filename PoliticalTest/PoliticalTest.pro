@@ -1,5 +1,4 @@
-QT += quick qml
-
+QT += quick qml widgets
 SOURCES += \
         DBclass.cpp \
         main.cpp \

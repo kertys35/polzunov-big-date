@@ -5,39 +5,7 @@ DBclass::DBclass(QObject *parent): QObject{parent}
 {
     connect(networkManager, &QNetworkAccessManager::finished, this, &DBclass::onHttpFinished); //ВАЖНО!
 }
-//
-void DBclass::connectToDatabase()
-{
-    db=QSqlDatabase::addDatabase("QPSQL");           //тип базы данных
-    db.setHostName(DATABASE_HOSTNAME);               //адрес сервера
-    db.setDatabaseName(DATABASE_NAME);               //название таблицы
-    db.setUserName(DATABASE_USERNAME);               //имя пользователя
-    db.setPassword(DATABASE_PASSWORD);               //пароль пользователя
-    db.setPort(DATABASE_PORT);
-    this->openDataBase();
-}
-//Открытие БД
-bool DBclass::openDataBase()
-{
-    if(db.open())
-    {
-        qDebug() << "Есть подключение";
-        return true;
-    }
-    else
-    {
-         qDebug() << "Нет подключения";
-        return false;
-    }
-}
 
-
-//Закрытие БД
-void DBclass::closeDataBase()
-{
-    qDebug()<<"Соединение закрыто";
-    db.close();
-}
 //Вставление данных в БД
 void DBclass::insertIntoTable(const QVariantList &data, int id)
 {

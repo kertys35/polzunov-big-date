@@ -2,10 +2,6 @@
 #define DBCLASS_H
 
 #include <QObject>
-#include <QSql>
-#include <QSqlQuery>
-#include <QSqlError>
-#include <QSqlDatabase>
 #include <QFile>
 #include <QDate>
 #include <QDebug>
@@ -28,29 +24,13 @@
 #include <QListWidget>
 #include <qqml.h>
 
-#define DATABASE_HOSTNAME               "localhost"         //Название БД
-#define DATABASE_NAME                   "Test"      //Называние БД
-#define DATABASE_USERNAME               "postgres"       //Имя пользователя
-#define DATABASE_PASSWORD               "123"           //Пароль от БД
-#define DATABASE_PORT                   5433            //Порт подключения
-
-#define TABLE                           "tests"         //Название таблицы БД
-#define TABLE_NAME                      "user_id"          //Колонка с id пользователя
-#define TABLE_FIRST_SCORE               "firstresult"       //Колонка с результатами по Эксраверсии – Интроверсии
-#define TABLE_SECOND_SCORE              "secondresult"      //Колонка с результатами по Привязанности – Обособленности
-#define TABLE_THIRD_SCORE               "thirdresult"       //Колонка с результатами по Самоконтролю – Импульсивности
-#define TABLE_FOURTH_SCORE              "fourthresult"      //Колонка с результатами по Эмоциональной устойчивости – эмоциональной неустойчивости
-#define TABLE_FIFTH_SCORE               "fifthresult"       //Колонка с результатами по Экспрессивности – Практичности
 
 class DBclass : public QObject
 {
     Q_OBJECT
 public:
     explicit DBclass(QObject *parent = nullptr);
-    void connectToDatabase();
-private:
-    bool openDataBase();        //Открытие БД
-    void closeDataBase();       //Закрытие БД
+
 private slots:
     void on_newDataReceived(const QJsonArray &jsonArray);
     void onHttpFinished(QNetworkReply *reply);
@@ -71,7 +51,6 @@ public slots:
 signals:
 
 private:
-    QSqlDatabase db;
     NetworkManager *networkManager;
     int tempScore[5];
     int flagUserID=0;
